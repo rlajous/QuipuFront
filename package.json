@@ -73,7 +73,6 @@
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
     "@babel/preset-flow": "^7.0.0",
     "@rescripts/cli": "0.0.7",
-    "aws-deploy-script-fe": "^1.0.8",
     "chalk": "^2.4.2",
     "env-cmd": "^9.0.3",
     "eslint-config-wolox": "^2.3.0",

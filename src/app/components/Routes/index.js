@@ -10,9 +10,9 @@ import AuthenticatedRoute from './components/AuthenticatedRoute';
 import styles from './styles.scss';
 
 const Login = lazy(() => import('../../screens/Login'));
-const Cars = lazy(() => import('../../screens/Cars'));
-const Statistics = lazy(() => import('../../screens/Statistics'));
-const Home = lazy(() => import('../../screens/Home'));
+const Transactions = lazy(() => import('../../screens/Transactions'));
+const MarketPlace = lazy(() => import('../../screens/MarketPlace'));
+const Profile = lazy(() => import('../../screens/Profile'));
 const Configuration = lazy(() => import('../../screens/Configuration'));
 
 function AppRoutes() {
@@ -21,11 +21,11 @@ function AppRoutes() {
       <div className={styles.container}>
         <Suspense>
           <Switch>
-            <AuthenticatedRoute isPublicRoute exact path={Routes.LOGIN} component={Login} />
-            <AuthenticatedRoute isPrivateRoute path={Routes.CARS} component={Cars} />
-            <AuthenticatedRoute isPrivateRoute path={Routes.STATISTICS} component={Statistics} />
-            <AuthenticatedRoute isPrivateRoute path={Routes.CONFIGURATION} component={Configuration} />
-            <AuthenticatedRoute isPrivateRoute path={Routes.HOME} component={Home} />
+            <AuthenticatedRoute isPublicRoute exact path={Routes.Login} component={Login} />
+            <AuthenticatedRoute isPrivateRoute path={Routes.Transactions} component={Transactions} />
+            <AuthenticatedRoute isPrivateRoute path={Routes.MarketPlace} component={MarketPlace} />
+            <AuthenticatedRoute isPrivateRoute path={Routes.Configuration} component={Configuration} />
+            <AuthenticatedRoute isPrivateRoute path={Routes.Profile} component={Profile} />
           </Switch>
         </Suspense>
       </div>

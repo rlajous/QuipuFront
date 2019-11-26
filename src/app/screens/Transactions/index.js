@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import { actionCreators as carActions } from '../../../redux/Cars/actions';
 import Dashboard from '../../components/Dashboard';
 
-import Cars from './layout';
+import Transactions from './layout';
 
-class CarsContainer extends Component {
+class TransactionsContainer extends Component {
   componentDidMount() {
     const { hydrateCars } = this.props;
     hydrateCars();
@@ -17,13 +17,13 @@ class CarsContainer extends Component {
     const { cars, loading } = this.props;
     return (
       <Dashboard>
-        <Cars cars={cars} loading={loading} />
+        <Transactions cars={cars} loading={loading} />
       </Dashboard>
     );
   }
 }
 
-CarsContainer.propTypes = {
+TransactionsContainer.propTypes = {
   hydrateCars: PropTypes.func,
   // eslint-disable-next-line
   cars: PropTypes.array,
@@ -42,4 +42,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CarsContainer);
+)(TransactionsContainer);

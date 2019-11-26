@@ -17,11 +17,6 @@ module.exports.validateArgs = env => {
     error(`.env.${env} file doesn't exist in the root directory`);
     process.exit(1);
   }
-
-  if (!fs.existsSync('aws.js')) {
-    error("aws.js file doesn't exist in the root directory");
-    process.exit(1);
-  }
 };
 
 module.exports.error = error;

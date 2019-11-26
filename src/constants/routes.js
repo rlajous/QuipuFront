@@ -1,10 +1,10 @@
 const Routes = {
-  HOME: '/',
-  LOGIN: '/login',
+  Profile: '/',
+  Login: '/login',
   RECOVER_PASSWORD: '/forgot_password',
-  CARS: '/cars',
-  STATISTICS: '/stats',
-  CONFIGURATION: '/config'
+  Transactions: '/Transactions',
+  MarketPlace: '/MarketPlace',
+  Configuration: '/Configuration'
 };
 
 export default Routes;

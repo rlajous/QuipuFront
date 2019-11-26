@@ -90,7 +90,7 @@ export const actionCreators = {
         if (response.ok) {
           await AuthService.setCurrentUser(response.data);
           dispatch(privateActionCreators.loginSuccess(response.data));
-          dispatch(push(Routes.HOME));
+          dispatch(push(Routes.Profile));
         } else {
           throw new Error('Invalid credentials');
         }
@@ -133,7 +133,7 @@ export const actionCreators = {
     return async dispatch => {
       await AuthService.removeCurrentUser();
       dispatch({ type: actions.LOGOUT });
-      dispatch(push(Routes.LOGIN));
+      dispatch(push(Routes.Login));
     };
   }
 };

@@ -39,23 +39,28 @@ function SideBar({ image, onDrawerClose, open, toggleDrawer }) {
             </div>
             <img src={image || defaultLogo} alt="Logo" className={`${styles.logo}`} />
             <Divider />
-            <NavLink exact to={Routes.HOME} className={styles.routeContainer} activeClassName={styles.bold}>
+            <NavLink
+              exact
+              to={Routes.Profile}
+              className={styles.routeContainer}
+              activeClassName={styles.bold}
+            >
               <PersonIcon />
               <span className={styles.route}>{t('Routes:profile')}</span>
             </NavLink>
             <Divider />
-            <NavLink to={Routes.CARS} className={styles.routeContainer} activeClassName={styles.bold}>
+            <NavLink to={Routes.Transactions} className={styles.routeContainer} activeClassName={styles.bold}>
               <AccountBalanceWalletIcon />
               <span className={styles.route}>{t('Routes:transactions')}</span>
             </NavLink>
             <Divider />
-            <NavLink to={Routes.STATISTICS} className={styles.routeContainer} activeClassName={styles.bold}>
+            <NavLink to={Routes.MarketPlace} className={styles.routeContainer} activeClassName={styles.bold}>
               <StoreIcon />
               <span className={styles.route}>{t('Routes:marketplace')}</span>
             </NavLink>
             <Divider />
             <NavLink
-              to={Routes.CONFIGURATION}
+              to={Routes.Configuration}
               className={styles.routeContainer}
               activeClassName={styles.bold}
             >
@@ -76,22 +81,22 @@ function SideBar({ image, onDrawerClose, open, toggleDrawer }) {
         >
           <img src={image || defaultLogo} alt="Logo" className={`${styles.logo}`} />
           <Divider />
-          <NavLink exact to={Routes.HOME} className={styles.routeContainer} activeClassName={styles.bold}>
+          <NavLink exact to={Routes.Profile} className={styles.routeContainer} activeClassName={styles.bold}>
             <PersonIcon />
             <span className={styles.route}>{t('Routes:profile')}</span>
           </NavLink>
           <Divider />
-          <NavLink to={Routes.CARS} className={styles.routeContainer} activeClassName={styles.bold}>
+          <NavLink to={Routes.Transactions} className={styles.routeContainer} activeClassName={styles.bold}>
             <AccountBalanceWalletIcon />
             <span className={styles.route}>{t('Routes:transactions')}</span>
           </NavLink>
           <Divider />
-          <NavLink to={Routes.STATISTICS} className={styles.routeContainer} activeClassName={styles.bold}>
+          <NavLink to={Routes.MarketPlace} className={styles.routeContainer} activeClassName={styles.bold}>
             <StoreIcon />
             <span className={styles.route}>{t('Routes:marketplace')}</span>
           </NavLink>
           <Divider />
-          <NavLink to={Routes.CONFIGURATION} className={styles.routeContainer} activeClassName={styles.bold}>
+          <NavLink to={Routes.Configuration} className={styles.routeContainer} activeClassName={styles.bold}>
             <SettingsIcon />
             <span className={styles.route}>{t('Routes:config')}</span>
           </NavLink>
