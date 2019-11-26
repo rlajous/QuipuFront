@@ -1,0 +1,118 @@
+{
+  "name": "ploti-backoffice",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@babel/cli": "^7.4.4",
+    "@dr-kobros/react-webfont-loader": "^8.0.0",
+    "@emotion/core": "^10.0.17",
+    "@material-ui/core": "^4.3.2",
+    "@material-ui/icons": "^4.5.1",
+    "@redux-beacon/google-analytics": "^1.2.2",
+    "@trendmicro/react-sidenav": "^0.4.5",
+    "apisauce": "^1.0.2",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "chart.js": "^2.8.0",
+    "connected-react-router": "^6.4.0",
+    "d3": "^5.9.7",
+    "history": "^4.9.0",
+    "i18next": "^13.1.5",
+    "mapbox-gl": "^1.2.0",
+    "moment": "^2.24.0",
+    "node-sass": "^4.12.0",
+    "postcss": "^7.0.17",
+    "react": "^16.8.6",
+    "react-chartjs-2": "^2.7.6",
+    "react-d3-library": "^1.1.8",
+    "react-dom": "^16.8.6",
+    "react-redux": "^6.0.1",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "3.0.1",
+    "react-select": "^3.0.7",
+    "react-spinkit": "^3.0.0",
+    "react-spinners": "^0.6.1",
+    "redux": "^4.0.1",
+    "redux-beacon": "^2.1.0",
+    "redux-form": "^8.2.4",
+    "redux-recompose": "^2.1.5",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
+    "seamless-immutable": "^7.1.4",
+    "wolox-equalizer": "0.0.3"
+  },
+  "scripts": {
+    "start": "node ./scripts/start.js development",
+    "start-env": "node ./scripts/start.js",
+    "build": "node ./scripts/build.js",
+    "deploy": "node ./scripts/deploy.js",
+    "test": "rescripts test --env=jsdom",
+    "eject": "./node_modules/react-scripts/bin/react-scripts.js eject",
+    "lint": "./node_modules/eslint/bin/eslint.js src",
+    "lint-fix": "./node_modules/eslint/bin/eslint.js src --fix",
+    "lint-scss": "./node_modules/stylelint/bin/stylelint.js '**/*.scss' --fix",
+    "lint-diff": "git diff --name-only --cached --relative --diff-filter=ACM | grep \\.js$ | xargs eslint",
+    "flow": "flow"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@babel/preset-flow": "^7.0.0",
+    "@rescripts/cli": "0.0.7",
+    "aws-deploy-script-fe": "^1.0.8",
+    "chalk": "^2.4.2",
+    "env-cmd": "^9.0.3",
+    "eslint-config-wolox": "^2.3.0",
+    "eslint-config-wolox-react": "^1.1.0",
+    "eslint-import-resolver-babel-module": "^5.1.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-flowtype": "^3.9.1",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.13.0",
+    "eslint-plugin-react-native": "^3.5.0",
+    "flow-bin": "^0.89.0",
+    "husky": "^2.4.1",
+    "minimist": "^1.2.0",
+    "postcss-html": "^0.36.0",
+    "postcss-syntax": "^0.36.2",
+    "prettier": "^1.17.1",
+    "prettier-eslint": "^8.8.2",
+    "prettier-eslint-cli": "^4.7.1",
+    "prettier-stylelint": "^0.4.2",
+    "prop-types": "^15.7.2",
+    "react-hot-loader": "^4.11.1",
+    "stylelint": "^9.10.1",
+    "stylelint-config-wolox": "^1.0.5",
+    "stylelint-no-indistinguishable-colors": "^1.2.1",
+    "stylelint-scss": "^3.5.4"
+  },
+  "title": "ploti-backoffice",
+  "repository": {
+    "type": "git"
+  },
+  "engines": {
+    "node": ">= 10.15.3",
+    "npm": ">= 6.9.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": ""
+    }
+  }
+}
