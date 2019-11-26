@@ -1,5 +1,6 @@
 import api from '../config/api';
 import { actionCreators as authActions } from '../redux/Auth/actions';
+import { myFirebase } from '../firebase';
 
 import * as LocalStorageService from './LocalStorageService';
 
@@ -24,7 +25,7 @@ export const authSetup = async dispatch => {
   dispatch(authActions.init(currentUser));
 };
 
-export const login = params => api.post('/companies/login', params);
+export const login = ({ email, password }) => myFirebase.auth().signInWithEmailAndPassword(email, password);
 
 export const edit = params => {
   api.post('/companies/edit', params);

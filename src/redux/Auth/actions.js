@@ -10,9 +10,9 @@ export const actions = stringArrayToObject(
     'LOGIN',
     'LOGIN_SUCCESS',
     'LOGIN_FAILURE',
-    'COMPANY',
-    'COMPANY_SUCCESS',
-    'COMPANY_FAILURE',
+    'USER',
+    'USER_SUCCESS',
+    'USER_FAILURE',
     'LOGOUT',
     'AUTH_INIT',
     'PASSWORD',
@@ -49,15 +49,15 @@ const privateActionCreators = {
       payload: { err }
     };
   },
-  companySuccess(authData) {
+  userSuccess(authData) {
     return {
-      type: actions.COMPANY_SUCCESS,
+      type: actions.USER_SUCCESS,
       payload: { authData }
     };
   },
-  companyFailure(err) {
+  userFailure(err) {
     return {
-      type: actions.COMPANY_FAILURE,
+      type: actions.USER_FAILURE,
       payload: { err }
     };
   }
@@ -85,18 +85,16 @@ export const actionCreators = {
   login(authData) {
     return async dispatch => {
       dispatch({ type: actions.LOGIN });
-      try {
-        const response = await AuthService.login(authData);
-        if (response.ok) {
-          await AuthService.setCurrentUser(response.data);
-          dispatch(privateActionCreators.loginSuccess(response.data));
+      await AuthService.login(authData)
+        .then(async user => {
+          console.log(user.user);
+          await AuthService.setCurrentUser(user.user);
+          dispatch(privateActionCreators.loginSuccess(user.user));
           dispatch(push(Routes.Profile));
-        } else {
-          throw new Error('Invalid credentials');
-        }
-      } catch (e) {
-        dispatch(privateActionCreators.loginFailure(e));
-      }
+        })
+        .catch(error => {
+          dispatch(privateActionCreators.loginFailure(error));
+        });
     };
   },
   edit(authData) {
@@ -114,18 +112,18 @@ export const actionCreators = {
       }
     };
   },
-  hydrateCompany() {
+  hydrateUser() {
     return async dispatch => {
-      dispatch({ type: actions.COMPANY });
+      dispatch({ type: actions.USER });
       try {
         const response = await AuthService.hydrateCurrentUser();
         if (response.ok) {
-          dispatch(privateActionCreators.companySuccess(response.data));
+          dispatch(privateActionCreators.userSuccess(response.data));
         } else {
           throw new Error('Invalid credentials');
         }
       } catch (e) {
-        dispatch(privateActionCreators.companyFailure(e));
+        dispatch(privateActionCreators.userFailure(e));
       }
     };
   },

@@ -18,9 +18,9 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    const { hydrateCompany, currentUser } = this.props;
+    const { hydrateUser, currentUser } = this.props;
     if (currentUser) {
-      hydrateCompany();
+      hydrateUser();
     }
   }
 
@@ -41,16 +41,16 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { company, loading } = this.props;
+    const { user, loading } = this.props;
     const { open } = this.state;
     return (
       <div className={loading ? styles.loading : 'column'}>
         {loading && <Loader />}
-        {!!company && !loading && (
+        {!!user && !loading && (
           <Fragment>
             <NavBar onDrawerOpen={this.handleDrawerOpen} open={open} />
             <SideBar
-              image={company.image}
+              image={user.image}
               open={open}
               onDrawerClose={this.handleDrawerClose}
               toggleDrawer={this.toggleDrawer}
@@ -64,20 +64,20 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
-  company: PropTypes.objectOf(),
   currentUser: PropTypes.objectOf(),
-  hydrateCompany: PropTypes.func,
-  loading: PropTypes.bool
+  hydrateUser: PropTypes.func,
+  loading: PropTypes.bool,
+  user: PropTypes.objectOf()
 };
 
 const mapStateToProps = store => ({
   currentUser: store.auth.currentUser,
-  company: store.auth.company,
+  user: store.auth.user,
   loading: store.auth.loading
 });
 
 const mapDispatchToProps = dispatch => ({
-  hydrateCompany: () => dispatch(userActions.hydrateCompany())
+  hydrateUser: () => dispatch(userActions.hydrateUser())
 });
 
 export default connect(

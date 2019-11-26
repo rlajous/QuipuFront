@@ -8,12 +8,13 @@ import { actions } from './actions';
 /* ------------- Auth reducer ------------- */
 const defaultState = {
   currentUser: getCurrentUser(),
-  company: null,
+  user: null,
   loading: false,
   initialLoading: true,
   email: '',
   password: '',
-  err: null
+  err: null,
+  uid: null
 };
 
 /* eslint-disable complexity */
@@ -40,9 +41,12 @@ export function reducer(state = Immutable(defaultState), action) {
       return state.merge({ loading: true });
     }
     case actions.LOGIN_SUCCESS: {
+      const { uid, email } = action.payload;
       return state.merge({
         loading: false,
-        currentUser: action.payload.authData
+        currentUser: true,
+        email,
+        uid
       });
     }
     case actions.LOGIN_FAILURE: {
@@ -69,16 +73,16 @@ export function reducer(state = Immutable(defaultState), action) {
         err: action.payload.err
       });
     }
-    case actions.COMPANY: {
+    case actions.USER: {
       return state.merge({ loading: true });
     }
-    case actions.COMPANY_SUCCESS: {
+    case actions.USER_SUCCESS: {
       return state.merge({
         loading: false,
         company: action.payload.authData
       });
     }
-    case actions.COMPANY_FAILURE: {
+    case actions.USER_FAILURE: {
       return state.merge({
         loading: false,
         company: null,
