@@ -1,14 +1,20 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
-import Loading from '../Spinner/components/loading';
+import Loading from '../Loader';
+
+import styles from './styles.module.scss';
 
 function CustomSuspense({ fallback, children }) {
   return <Suspense fallback={fallback}>{children}</Suspense>;
 }
 
 CustomSuspense.defaultProps = {
-  fallback: <Loading />
+  fallback: (
+    <div className={styles.container}>
+      <Loading />
+    </div>
+  )
 };
 
 CustomSuspense.propTypes = {

@@ -3,8 +3,6 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import PropTypes from 'prop-types';
 
-import logo from '../../assets/logo_with_name.png';
-
 import styles from './styles.module.scss';
 
 function NavBar({ onDrawerOpen, open }) {
@@ -19,9 +17,6 @@ function NavBar({ onDrawerOpen, open }) {
         >
           <MenuIcon />
         </IconButton>
-      </div>
-      <div className={styles.logoContainer}>
-        <img src={logo} alt="Logo" className={`${styles.logo}`} />
       </div>
     </div>
   );

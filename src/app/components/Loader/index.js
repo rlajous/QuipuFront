@@ -9,7 +9,7 @@ function Loader() {
   return (
     <div className="column middle center">
       <img src={logo} alt="Logo" className={`${styles.logo}`} />
-      <BarLoader sizeUnit="px" size={50} color="#0066ff" loading />
+      <BarLoader sizeUnit="px" size={50} color="#09A29B" loading />
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import i18next from 'i18next';
 
 i18next.addResources('es', 'Routes', {
-  home: 'Inicio',
-  cars: 'Vehiculos',
-  stats: 'Estadisticas',
+  profile: 'Perfil',
+  transactions: 'Transacciones',
+  marketplace: 'Mercado',
   config: 'Configuración',
   company: 'Empresa'
 });

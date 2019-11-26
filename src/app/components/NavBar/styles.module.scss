@@ -30,12 +30,14 @@ $breakpoint-tablet: 768px;
 .logo-container {
   display: flex;
   width: 100%;
+  justify-content: center;
 }
 
 @media (max-width: $breakpoint-tablet) {
   .logo {
     justify-content: center;
     margin-right: 48px;
+    height: 30px;
   }
 
   .navbar {
