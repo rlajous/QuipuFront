@@ -4,7 +4,8 @@ i18next.addResources('es', 'Configuration', {
   save: 'Guardar Cambios',
   email: 'E-mail',
   emailPlaceholder: 'Ej: nombre@empresa.com',
-  password: 'Contraseña',
+  confirmPassword: 'Confirmar Contraseña',
+  password: 'Contraseña Nueva',
   passwordPlaceholder: 'Ingrese su contraseña',
   logout: 'Cerrar Sesión',
   title: 'Configuración'

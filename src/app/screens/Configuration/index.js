@@ -31,6 +31,7 @@ class ConfigurationContainer extends Component {
   };
 
   render() {
+    const { user } = this.props;
     return (
       <Dashboard>
         <Configuration
@@ -38,6 +39,7 @@ class ConfigurationContainer extends Component {
           onPasswordChange={this.handlePasswordChange}
           onEdit={this.handleEdit}
           onLogout={this.handleLogOut}
+          user={user}
         />
       </Dashboard>
     );
@@ -50,11 +52,14 @@ ConfigurationContainer.propTypes = {
   handlePasswordChange: PropTypes.func,
   logout: PropTypes.func,
   newEmail: PropTypes.string,
-  newPasword: PropTypes.string
+  newPasword: PropTypes.string,
+  // eslint-disable-next-line
+  user: PropTypes.object
 };
 
 const mapStateToProps = store => ({
   currentUser: store.auth.currentUser,
+  user: store.auth.user,
   newEmail: store.auth.email,
   newPasword: store.auth.password,
   err: store.auth.err

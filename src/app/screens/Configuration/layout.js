@@ -1,3 +1,5 @@
+import { userInfo } from 'os';
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { t } from 'i18next';
@@ -7,7 +9,7 @@ import InputLabel from '../../components/InputLabel';
 import { FIELDS } from './constants';
 import styles from './styles.module.scss';
 
-function Configuration({ onEmailChange, onPasswordChange, onEdit, onLogout }) {
+function Configuration({ onEmailChange, onPasswordChange, onEdit, onLogout, user }) {
   return (
     <form className={`column full-width ${styles.formContainer}`} onSubmit={onEdit} autoComplete="off">
       <h1 className={`${styles.title}`}> {t('Configuration:title')}</h1>
@@ -17,6 +19,7 @@ function Configuration({ onEmailChange, onPasswordChange, onEdit, onLogout }) {
           name={FIELDS.newEmail}
           inputId={FIELDS.newEmail}
           dataFor={FIELDS.newEmail}
+          value={user.email}
           inputType="text"
           inputClassName={`m-bottom-2 full-width ${styles.input}`}
           textClassName={`${styles.label}`}
@@ -28,7 +31,18 @@ function Configuration({ onEmailChange, onPasswordChange, onEdit, onLogout }) {
           name={FIELDS.newPassword}
           inputId={FIELDS.newPassword}
           dataFor={FIELDS.newPassword}
-          inputType="password"
+          inputType="newPassword"
+          inputClassName={`m-bottom-2 full-width ${styles.input}`}
+          textClassName={`${styles.label}`}
+          placeholder={t('Configuration:passwordPlaceholder')}
+          handleChange={onPasswordChange}
+        />
+        <InputLabel
+          label={t('Configuration:confirmPassword')}
+          name={FIELDS.newPassword}
+          inputId={FIELDS.newPassword}
+          dataFor={FIELDS.newPassword}
+          inputType="confirmNewPassword"
           inputClassName={`m-bottom-2 full-width ${styles.input}`}
           textClassName={`${styles.label}`}
           placeholder={t('Configuration:passwordPlaceholder')}
@@ -51,7 +65,9 @@ Configuration.propTypes = {
   onEdit: PropTypes.func.isRequired,
   onEmailChange: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,
-  onPasswordChange: PropTypes.func.isRequired
+  onPasswordChange: PropTypes.func.isRequired,
+  // eslint-disable-next-line
+  user: PropTypes.object
 };
 
 export default Configuration;
