@@ -21,7 +21,7 @@ const options = [
   { value: 'all', label: t('Marketplace:allSelect') }
 ];
 
-function Transactions({ transactions, loading, user }) {
+function Transactions({ transactions, loading, user, handleOpenBuyModal, handleOpenSellModal }) {
   return (
     <div className={loading ? styles.loading : styles.root}>
       <div className={styles.header}>
@@ -32,6 +32,14 @@ function Transactions({ transactions, loading, user }) {
           defaultValue={options[0]}
           isDisabled={loading}
         />
+      </div>
+      <div className={styles.buttons}>
+        <button type="button" onClick={handleOpenBuyModal} className={styles.buyButton}>
+          {t('Marketplace:buy')}
+        </button>
+        <button type="button" onClick={handleOpenSellModal} className={styles.sellButton}>
+          {t('Marketplace:sell')}
+        </button>
       </div>
       {loading && <Loader />}
       {!!transactions && (
@@ -79,6 +87,8 @@ function Transactions({ transactions, loading, user }) {
 }
 
 Transactions.propTypes = {
+  handleOpenBuyModal: PropTypes.func,
+  handleOpenSellModal: PropTypes.func,
   loading: PropTypes.bool,
   // eslint-disable-next-line
   user:PropTypes.object,

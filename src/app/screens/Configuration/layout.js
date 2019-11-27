@@ -1,5 +1,3 @@
-import { userInfo } from 'os';
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { t } from 'i18next';

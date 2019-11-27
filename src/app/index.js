@@ -6,6 +6,8 @@ import { authSetup } from '../services/AuthServices';
 import store from '../redux/store';
 
 import Routes from './components/Routes';
+import BuyModal from './components/BuyModal';
+import SellModal from './components/SellModal';
 import '../scss/application.scss';
 
 class App extends Component {
@@ -18,6 +20,8 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Routes />
+        <BuyModal />
+        <SellModal />
       </Provider>
     );
   }

@@ -51,12 +51,44 @@ $breakpoint-tablet: 768px;
 }
 
 .loading {
+  height: 100vh;
   margin: 0 auto;
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #F1F1F1;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+}
+
+.buy-button {
+  border-radius: 5px;
+  height: 40px;
+  background-color: #E2E2E2;
+  color: black;
+  margin-right: 40px;
+  width: fit-content;
+  padding: 10px;
+  text-align: center;
+  min-width: 130px;
+  min-height: fit-content;
+}
+
+.sell-button {
+  border-radius: 5px;
+  height: 40px;
+  background-color: #E2E2E2;
+  color: black;
+  width: fit-content;
+  padding: 10px;
+  text-align: center;
+  min-width: 130px;
 }
 
 @media (max-width: $breakpoint-tablet) {
@@ -74,7 +106,18 @@ $breakpoint-tablet: 768px;
   .row {
     font-size: 8px;
   }
+
   .cell {
     font-size: 8px !important;
+  }
+
+  .buy-button {
+    margin-right: 20px;
+    font-size: 12px;
+  }
+  
+  .sell-button {
+    margin-right: 20px;
+    font-size: 12px;
   }
 }
