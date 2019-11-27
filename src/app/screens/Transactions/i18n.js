@@ -6,5 +6,7 @@ i18next.addResources('es', 'Transactions', {
   price: 'Precio',
   date: 'Fecha',
   year: 'Año',
-  type: 'Tipo de Transaccion'
+  type: 'Tipo de Transaccion',
+  sell: 'Venta',
+  buy: 'Compra'
 });

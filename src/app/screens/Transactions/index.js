@@ -2,41 +2,44 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { actionCreators as carActions } from '../../../redux/Cars/actions';
+import { actionCreators as transactionsActions } from '../../../redux/Transactions/actions';
 import Dashboard from '../../components/Dashboard';
 
 import Transactions from './layout';
 
 class TransactionsContainer extends Component {
   componentDidMount() {
-    const { hydrateCars } = this.props;
-    hydrateCars();
+    const { hydrateTransactions } = this.props;
+    hydrateTransactions();
   }
 
   render() {
-    const { cars, loading } = this.props;
+    const { transactions, loading, user } = this.props;
     return (
       <Dashboard>
-        <Transactions cars={cars} loading={loading} />
+        <Transactions transactions={transactions} loading={loading} user={user} />
       </Dashboard>
     );
   }
 }
 
 TransactionsContainer.propTypes = {
-  hydrateCars: PropTypes.func,
+  hydrateTransactions: PropTypes.func,
+  loading: PropTypes.bool,
   // eslint-disable-next-line
-  cars: PropTypes.array,
-  loading: PropTypes.bool
+  user:PropTypes.object,
+  // eslint-disable-next-line
+  transactions: PropTypes.array
 };
 
 const mapStateToProps = store => ({
-  cars: store.cars.cars,
-  loading: store.cars.loading
+  transactions: store.transactions.transactions,
+  user: store.auth.user,
+  loading: store.transactions.loading
 });
 
 const mapDispatchToProps = dispatch => ({
-  hydrateCars: () => dispatch(carActions.hydrateCars())
+  hydrateTransactions: () => dispatch(transactionsActions.hydrateTransactions())
 });
 
 export default connect(

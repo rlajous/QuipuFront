@@ -9,6 +9,7 @@ import { t } from 'i18next';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 
+import { currencyFormat } from '../../../utils/parsers';
 import Loader from '../../components/Loader';
 
 import styles from './styles.module.scss';
@@ -20,7 +21,7 @@ const options = [
   { value: 'all', label: t('Marketplace:allSelect') }
 ];
 
-function Transactions({ cars, loading }) {
+function Transactions({ transactions, loading, user }) {
   return (
     <div className={loading ? styles.loading : styles.root}>
       <div className={styles.header}>
@@ -33,11 +34,14 @@ function Transactions({ cars, loading }) {
         />
       </div>
       {loading && <Loader />}
-      {!!cars && (
+      {!!transactions && (
         <Paper className={styles.paper}>
           <Table size="medium">
             <TableHead className={styles.head}>
               <TableRow>
+                <TableCell align="center" className={styles.cell}>
+                  {t('Transactions:type')}
+                </TableCell>
                 <TableCell align="center" className={styles.cell}>
                   {t('Transactions:tokens')}
                 </TableCell>
@@ -47,25 +51,22 @@ function Transactions({ cars, loading }) {
                 <TableCell align="center" className={styles.cell}>
                   {t('Transactions:date')}
                 </TableCell>
-                <TableCell align="center" className={styles.cell}>
-                  {t('Transactions:type')}
-                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {cars.map(row => (
+              {transactions.map(row => (
                 <TableRow className={styles.row} key={row.name}>
                   <TableCell component="th" scope="row" align="center" className={styles.cell}>
-                    {row.id}
+                    {row.sellerId === user.uid ? t('Transactions:sell') : t('Transactions:buy')}
                   </TableCell>
                   <TableCell align="center" className={styles.cell}>
-                    {row.brand}
+                    {row.tokens}
                   </TableCell>
                   <TableCell align="center" className={styles.cell}>
-                    {row.model}
+                    {currencyFormat(row.price)}
                   </TableCell>
                   <TableCell align="center" className={styles.cell}>
-                    {row.year}
+                    {row.date}
                   </TableCell>
                 </TableRow>
               ))}
@@ -78,9 +79,11 @@ function Transactions({ cars, loading }) {
 }
 
 Transactions.propTypes = {
+  loading: PropTypes.bool,
   // eslint-disable-next-line
-  cars: PropTypes.array,
-  loading: PropTypes.bool
+  user:PropTypes.object,
+  // eslint-disable-next-line
+  transactions: PropTypes.array
 };
 
 export default Transactions;

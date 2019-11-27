@@ -1,4 +1,4 @@
-import * as CarsService from '../../services/CarsService';
+import * as CarsService from '../../services/TransactionsService';
 import { stringArrayToObject } from '../../utils/array';
 
 /* ------------- Auth actions ------------- */

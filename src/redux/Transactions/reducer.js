@@ -5,7 +5,7 @@ import { actions } from './actions';
 
 /* ------------- Auth reducer ------------- */
 const defaultState = {
-  cars: null,
+  transactions: null,
   loading: false,
   initialLoading: true
 };
@@ -14,19 +14,19 @@ const defaultState = {
 // eslint-disable-next-line new-cap
 export function reducer(state = Immutable(defaultState), action) {
   switch (action.type) {
-    case actions.HYDRATE_CARS: {
+    case actions.HYDRATE_TRANSACTIONS: {
       return state.merge({ loading: true });
     }
-    case actions.HYDRATE_CARS_SUCCESS: {
+    case actions.HYDRATE_TRANSACTIONS_SUCCESS: {
       return state.merge({
         loading: false,
-        cars: action.payload.cars
+        transactions: action.payload.transactions
       });
     }
-    case actions.HYDRATE_CARS_FAILURE: {
+    case actions.HYDRATE_TRANSACTIONS_FAILURE: {
       return state.merge({
         loading: false,
-        cars: null,
+        transactions: null,
         err: action.payload.err
       });
     }
@@ -41,5 +41,5 @@ export function reducer(state = Immutable(defaultState), action) {
 export const propTypes = {
   loading: PropTypes.bool.isRequired,
   initialLoading: PropTypes.bool.isRequired,
-  cars: PropTypes.array
+  transactions: PropTypes.array
 };

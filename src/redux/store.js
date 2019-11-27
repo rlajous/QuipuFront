@@ -9,7 +9,7 @@ import thunk from 'redux-thunk';
  * import AnalyticsMiddleware from '../services/AnalyticsService';
  */
 import { reducer as auth } from './Auth/reducer';
-import { reducer as cars } from './Cars/reducer';
+import { reducer as transactions } from './Transactions/reducer';
 import { reducer as routes } from './Routes/reducer';
 import { reducer as campaign } from './Campaign/reducer';
 import { reducer as statistics } from './Statistics/reducer';
@@ -20,7 +20,7 @@ export const history = createBrowserHistory();
 const reducers = combineReducers({
   auth,
   form,
-  cars,
+  transactions,
   campaign,
   routes,
   statistics,
