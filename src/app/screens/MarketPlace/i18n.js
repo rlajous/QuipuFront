@@ -6,6 +6,6 @@ i18next.addResources('es', 'Marketplace', {
   weekSelect: 'Ultima semana',
   monthSelect: 'Ultimo mes',
   allSelect: 'Toda la campaña',
-  buy: 'Vender Tokens',
-  sell: 'Comprar Tokens'
+  sell: 'Vender Tokens',
+  buy: 'Comprar Tokens'
 });

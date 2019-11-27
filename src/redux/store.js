@@ -14,6 +14,7 @@ import { reducer as routes } from './Routes/reducer';
 import { reducer as campaign } from './Campaign/reducer';
 import { reducer as statistics } from './Statistics/reducer';
 import { reducer as modal } from './Modal/reducer';
+import { reducer as order } from './Order/reducer';
 
 export const history = createBrowserHistory();
 
@@ -26,6 +27,7 @@ const reducers = combineReducers({
   routes,
   statistics,
   modal,
+  order,
   router: connectRouter(history)
 });
 
