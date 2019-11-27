@@ -87,7 +87,6 @@ export const actionCreators = {
       dispatch({ type: actions.LOGIN });
       await AuthService.login(authData)
         .then(async user => {
-          console.log(user.user);
           await AuthService.setCurrentUser(user.user);
           dispatch(privateActionCreators.loginSuccess(user.user));
           dispatch(push(Routes.Profile));

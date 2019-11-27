@@ -41,7 +41,7 @@ export function reducer(state = Immutable(defaultState), action) {
       return state.merge({ loading: true });
     }
     case actions.LOGIN_SUCCESS: {
-      const { uid, email } = action.payload;
+      const { uid, email } = action.payload.authData;
       return state.merge({
         loading: false,
         currentUser: true,
@@ -79,7 +79,7 @@ export function reducer(state = Immutable(defaultState), action) {
     case actions.USER_SUCCESS: {
       return state.merge({
         loading: false,
-        company: action.payload.authData
+        user: action.payload.authData
       });
     }
     case actions.USER_FAILURE: {

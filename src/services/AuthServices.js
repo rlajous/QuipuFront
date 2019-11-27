@@ -5,8 +5,9 @@ import { myFirebase } from '../firebase';
 import * as LocalStorageService from './LocalStorageService';
 
 export const setCurrentUser = currentUser => {
-  api.setHeader('Authorization', currentUser);
-  LocalStorageService.setSessionToken(currentUser);
+  const { ma } = currentUser;
+  api.setHeader('Authorization', ma);
+  LocalStorageService.setSessionToken(ma);
 };
 
 export const getCurrentUser = () => {
@@ -32,7 +33,4 @@ export const edit = params => {
   return { ok: true };
 };
 
-export const hydrateCurrentUser = () => {
-  api.get('/company');
-  return { ok: true, data: { sessionToken: 'logeado' } };
-};
+export const hydrateCurrentUser = () => api.get('/api/auth/user');
