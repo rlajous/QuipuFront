@@ -5,49 +5,79 @@ import PropTypes from 'prop-types';
 import { actionCreators as marketPlaceActions } from '../../../redux/MarketPlace/actions';
 import Dashboard from '../../components/Dashboard';
 
-import Statistics from './layout';
+import MarketPlace from './layout';
 
-class StatisticsContainer extends Component {
+class MarketPlaceContainer extends Component {
   componentDidMount() {
-    const { hydrateSellers, hydrateBuyers, amount, page } = this.props;
+    const { hydrateBuyers, amount, page, sellers, hydrateSellers } = this.props;
     const params = { amount, page };
-    hydrateSellers(params);
-    hydrateBuyers(params);
+    if (sellers.length) {
+      hydrateSellers(params);
+    } else {
+      hydrateBuyers(params);
+    }
   }
 
-  // handleChange = selectedOption => {
-  //   const { updateFilter, hydrateStatistics, hydrateMap } = this.props;
-  //   updateFilter(selectedOption);
-  //   hydrateStatistics(selectedOption.value);
-  //   hydrateMap(selectedOption);
-  // };
+  handleBuyers = () => {
+    const { hydrateBuyers, amount, page, sellers } = this.props;
+    const params = { amount, page };
+    if (sellers) {
+      hydrateBuyers(params);
+    }
+  };
+
+  handleSellers = () => {
+    const { hydrateSellers, amount, page, buyers } = this.props;
+    const params = { amount, page };
+    if (buyers) {
+      hydrateSellers(params);
+    }
+  };
+
+  handleChangePage = data => {
+    const { hydrateSellers, hydrateBuyers, amount, sellers, updatePage } = this.props;
+    const params = { amount, page: data.selected };
+    updatePage(data.selected);
+    if (sellers.length) {
+      hydrateSellers(params);
+    } else {
+      hydrateBuyers(params);
+    }
+  };
 
   render() {
-    const { heatCars, statistics, statisticsLoading, heatCarsLoading, filter } = this.props;
+    const { sellers, buyers, loading, filter, page, totalPages } = this.props;
     return (
       <Dashboard>
-        <Statistics
-          statistics={statistics}
-          mapInfo={heatCars}
-          loading={statisticsLoading || heatCarsLoading}
+        <MarketPlace
+          buyers={buyers}
+          sellers={sellers}
+          loading={loading}
           filter={filter}
-          // onHandleChange={this.handleChange}
+          onHandleBuyers={this.handleBuyers}
+          onHandleSellers={this.handleSellers}
+          page={page}
+          totalPages={totalPages}
+          onChangePage={this.handleChangePage}
         />
       </Dashboard>
     );
   }
 }
 
-StatisticsContainer.propTypes = {
+MarketPlaceContainer.propTypes = {
   amount: PropTypes.number,
+  buyers: PropTypes.arrayOf(),
   filter: PropTypes.string,
-  heatCars: PropTypes.objectOf(),
-  heatCarsLoading: PropTypes.bool,
   hydrateBuyers: PropTypes.func,
   hydrateSellers: PropTypes.func,
+  loading: PropTypes.bool,
+  // eslint-disable-next-line
   page: PropTypes.number,
-  statistics: PropTypes.objectOf(),
-  statisticsLoading: PropTypes.bool
+  // eslint-disable-next-line
+  sellers: PropTypes.array,
+  totalPages: PropTypes.number,
+  updatePage: PropTypes.func
 };
 
 const mapStateToProps = store => ({
@@ -61,10 +91,11 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = dispatch => ({
   hydrateSellers: selectedOption => dispatch(marketPlaceActions.hydrateSellers(selectedOption)),
-  hydrateBuyers: selectedOption => dispatch(marketPlaceActions.hydrateBuyers(selectedOption))
+  hydrateBuyers: selectedOption => dispatch(marketPlaceActions.hydrateBuyers(selectedOption)),
+  updatePage: selectedPage => dispatch(marketPlaceActions.updatePage(selectedPage))
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(StatisticsContainer);
+)(MarketPlaceContainer);

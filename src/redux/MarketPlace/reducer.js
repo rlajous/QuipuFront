@@ -9,7 +9,7 @@ const defaultState = {
   loading: true,
   sellers: [],
   buyers: [],
-  amount: 10,
+  amount: 1,
   page: 0,
   totalPages: 1
 };
@@ -18,19 +18,20 @@ const defaultState = {
 // eslint-disable-next-line new-cap
 export function reducer(state = Immutable(defaultState), action) {
   switch (action.type) {
-    case actions.FILTER: {
+    case actions.PAGE: {
       return state.merge({
         loading: false,
-        filter: action.payload.authData
+        page: action.payload
       });
     }
     case actions.HYDRATE_SELLERS: {
-      return state.merge({ loading: true });
+      return state.merge({ loading: true, buyers: [] });
     }
     case actions.HYDRATE_SELLERS_SUCCESS: {
       return state.merge({
         loading: false,
-        sellers: action.payload
+        sellers: action.payload.sellers,
+        totalPages: action.payload.pages
       });
     }
     case actions.HYDRATE_SELLERS_FAILURE: {
@@ -41,12 +42,13 @@ export function reducer(state = Immutable(defaultState), action) {
       });
     }
     case actions.HYDRATE_BUYERS: {
-      return state.merge({ loading: true });
+      return state.merge({ loading: true, sellers: [] });
     }
     case actions.HYDRATE_BUYERS_SUCCESS: {
       return state.merge({
         loading: false,
-        buyers: action.payload
+        buyers: action.payload.buyers,
+        totalPages: action.payload.pages
       });
     }
     case actions.HYDRATE_BUYERS_FAILURE: {

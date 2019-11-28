@@ -42,25 +42,25 @@ function Transactions({ transactions, loading, user, handleOpenBuyModal, handleO
         </button>
       </div>
       {loading && <Loader />}
-      {!!transactions && (
-        <Paper className={styles.paper}>
-          <Table size="medium">
-            <TableHead className={styles.head}>
-              <TableRow>
-                <TableCell align="center" className={styles.cell}>
-                  {t('Transactions:type')}
-                </TableCell>
-                <TableCell align="center" className={styles.cell}>
-                  {t('Transactions:tokens')}
-                </TableCell>
-                <TableCell align="center" className={styles.cell}>
-                  {t('Transactions:price')}
-                </TableCell>
-                <TableCell align="center" className={styles.cell}>
-                  {t('Transactions:date')}
-                </TableCell>
-              </TableRow>
-            </TableHead>
+      <Paper className={styles.paper}>
+        <Table size="medium">
+          <TableHead className={styles.head}>
+            <TableRow>
+              <TableCell align="center" className={styles.cell}>
+                {t('Transactions:type')}
+              </TableCell>
+              <TableCell align="center" className={styles.cell}>
+                {t('Transactions:tokens')}
+              </TableCell>
+              <TableCell align="center" className={styles.cell}>
+                {t('Transactions:price')}
+              </TableCell>
+              <TableCell align="center" className={styles.cell}>
+                {t('Transactions:date')}
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          {!!transactions && (
             <TableBody>
               {transactions.map(row => (
                 <TableRow className={styles.row} key={row.name}>
@@ -79,9 +79,9 @@ function Transactions({ transactions, loading, user, handleOpenBuyModal, handleO
                 </TableRow>
               ))}
             </TableBody>
-          </Table>
-        </Paper>
-      )}
+          )}
+        </Table>
+      </Paper>
     </div>
   );
 }

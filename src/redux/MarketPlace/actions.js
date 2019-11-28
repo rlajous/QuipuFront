@@ -4,7 +4,7 @@ import * as MarketPlaceService from '../../services/MarketPlaceService';
 /* ------------- Auth actions ------------- */
 export const actions = stringArrayToObject(
   [
-    'FILTER',
+    'PAGE',
     'HYDRATE_SELLERS',
     'HYDRATE_SELLERS_SUCCESS',
     'HYDRATE_SELLERS_FAILURE',
@@ -16,12 +16,6 @@ export const actions = stringArrayToObject(
 );
 
 const privateActionCreators = {
-  filterSuccess(authData) {
-    return {
-      type: actions.FILTER,
-      payload: { authData }
-    };
-  },
   hydrateSellersSuccess(authData) {
     return {
       type: actions.HYDRATE_SELLERS_SUCCESS,
@@ -49,9 +43,10 @@ const privateActionCreators = {
 };
 
 export const actionCreators = {
-  updateFilter(authData) {
-    return dispatch => {
-      dispatch(privateActionCreators.filterSuccess(authData));
+  updatePage(page) {
+    return {
+      type: actions.PAGE,
+      payload: page
     };
   },
   hydrateSellers(filter) {
@@ -60,7 +55,7 @@ export const actionCreators = {
       try {
         const response = await MarketPlaceService.getSellers(filter);
         if (response.ok) {
-          dispatch(privateActionCreators.hydrateSellersSuccess(response.data.sellers));
+          dispatch(privateActionCreators.hydrateSellersSuccess(response.data));
         }
       } catch (e) {
         dispatch(privateActionCreators.hydrateSellersFailure(e));
@@ -73,7 +68,8 @@ export const actionCreators = {
       try {
         const response = await MarketPlaceService.getBuyers(filter);
         if (response.ok) {
-          dispatch(privateActionCreators.hydrateBuyersSuccess(response.data.buyers));
+          console.log(response.data);
+          dispatch(privateActionCreators.hydrateBuyersSuccess(response.data));
         }
       } catch (e) {
         dispatch(privateActionCreators.hydrateBuyersFailure(e));

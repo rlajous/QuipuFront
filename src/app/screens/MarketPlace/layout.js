@@ -1,33 +1,129 @@
+/* eslint-disable complexity */
 import React from 'react';
 import { t } from 'i18next';
 import PropTypes from 'prop-types';
-import Select from 'react-select';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import ReactPaginate from 'react-paginate';
 
+import { currencyFormat } from '../../../utils/parsers';
 import Loader from '../../components/Loader';
 
 import styles from './styles.module.scss';
 
-const options = [
-  { value: 'day', label: t('Marketplace:daySelect') },
-  { value: 'week', label: t('Marketplace:weekSelect') },
-  { value: 'month', label: t('Marketplace:monthSelect') },
-  { value: 'all', label: t('Marketplace:allSelect') }
-];
-
-function Statistics({ statistics, mapInfo, loading, onHandleChange }) {
+function MarketPlace({
+  buyers,
+  sellers,
+  loading,
+  onHandleBuyers,
+  onHandleSellers,
+  onChangePage,
+  totalPages,
+  page
+}) {
   return (
     <div className={loading ? styles.loading : styles.app}>
       <div className={styles.header}>
         <h1 className={styles.title}>{t('Marketplace:title')}</h1>
-        <Select
-          options={options}
-          className={styles.container}
-          defaultValue={options[0]}
-          onChange={onHandleChange}
-          isDisabled={loading}
-        />
       </div>
-      {loading && (
+      <div className={styles.tableFilter}>
+        <button
+          type="button"
+          onClick={onHandleBuyers}
+          className={`${styles.button} ${buyers && buyers.length ? styles.selected : ''}`}
+        >
+          {t('Marketplace:buyers')}
+        </button>
+        <button
+          type="button"
+          onClick={onHandleSellers}
+          className={`${styles.button} ${sellers && sellers.length ? styles.selected : ''}`}
+        >
+          {t('Marketplace:sellers')}
+        </button>
+      </div>
+      <Paper className={styles.paper}>
+        <Table size="medium">
+          <TableHead className={styles.head}>
+            <TableRow>
+              <TableCell align="center" className={styles.cell}>
+                {t('Transactions:tokens')}
+              </TableCell>
+              <TableCell align="center" className={styles.cell}>
+                {t('Transactions:price')}
+              </TableCell>
+              <TableCell align="center" className={styles.cell}>
+                {t('Transactions:date')}
+              </TableCell>
+              <TableCell align="center" className={styles.cell}>
+                {t('Marketplace:action')}
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          {!loading && !!sellers && (
+            <TableBody>
+              {sellers.map(row => (
+                <TableRow className={styles.row} key={row.uid}>
+                  <TableCell align="center" className={styles.cell}>
+                    {row.tokens}
+                  </TableCell>
+                  <TableCell align="center" className={styles.cell}>
+                    {currencyFormat(row.price)}
+                  </TableCell>
+                  <TableCell align="center" className={styles.cell}>
+                    {row.date}
+                  </TableCell>
+                  <TableCell component="th" scope="row" align="center" className={styles.cell}>
+                    {t('Marketplace:buy')}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          )}
+          {!loading && !!buyers && (
+            <TableBody>
+              {buyers.map(row => (
+                <TableRow className={styles.row} key={row.name}>
+                  <TableCell align="center" className={styles.cell}>
+                    {row.tokens}
+                  </TableCell>
+                  <TableCell align="center" className={styles.cell}>
+                    {currencyFormat(row.price)}
+                  </TableCell>
+                  <TableCell align="center" className={styles.cell}>
+                    {row.date}
+                  </TableCell>
+                  <TableCell component="th" scope="row" align="center" className={styles.cell}>
+                    {t('Marketplace:sell')}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          )}
+        </Table>
+      </Paper>
+      {!loading && (
+        <ReactPaginate
+          previousLabel={t('Marketplace:previous')}
+          nextLabel={t('Marketplace:next')}
+          breakLabel="..."
+          breakClassName="break-me"
+          pageCount={totalPages}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={onChangePage}
+          containerClassName="pagination"
+          subContainerClassName="pages pagination"
+          activeClassName="active"
+          initialPage={page}
+          disableInitialCallback
+        />
+      )}
+      {!!loading && (
         <div className={styles.loader}>
           <Loader />
         </div>
@@ -36,11 +132,15 @@ function Statistics({ statistics, mapInfo, loading, onHandleChange }) {
   );
 }
 
-Statistics.propTypes = {
+MarketPlace.propTypes = {
+  buyers: PropTypes.arrayOf(),
   loading: PropTypes.bool,
-  mapInfo: PropTypes.objectOf(),
-  statistics: PropTypes.objectOf(),
-  onHandleChange: PropTypes.func
+  page: PropTypes.number,
+  sellers: PropTypes.arrayOf(),
+  totalPages: PropTypes.number,
+  onChangePage: PropTypes.func,
+  onHandleBuyers: PropTypes.func,
+  onHandleSellers: PropTypes.func
 };
 
-export default Statistics;
+export default MarketPlace;
