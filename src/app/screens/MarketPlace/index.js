@@ -2,25 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { actionCreators as mapActions } from '../../../redux/Routes/actions';
-import { actionCreators as statisticsActions } from '../../../redux/Statistics/actions';
+import { actionCreators as marketPlaceActions } from '../../../redux/MarketPlace/actions';
 import Dashboard from '../../components/Dashboard';
 
 import Statistics from './layout';
 
 class StatisticsContainer extends Component {
   componentDidMount() {
-    const { hydrateMap, hydrateStatistics, filter } = this.props;
-    hydrateStatistics(filter);
-    hydrateMap(filter);
+    const { hydrateSellers, hydrateBuyers, amount, page } = this.props;
+    const params = { amount, page };
+    hydrateSellers(params);
+    hydrateBuyers(params);
   }
 
-  handleChange = selectedOption => {
-    const { updateFilter, hydrateStatistics, hydrateMap } = this.props;
-    updateFilter(selectedOption);
-    hydrateStatistics(selectedOption.value);
-    hydrateMap(selectedOption);
-  };
+  // handleChange = selectedOption => {
+  //   const { updateFilter, hydrateStatistics, hydrateMap } = this.props;
+  //   updateFilter(selectedOption);
+  //   hydrateStatistics(selectedOption.value);
+  //   hydrateMap(selectedOption);
+  // };
 
   render() {
     const { heatCars, statistics, statisticsLoading, heatCarsLoading, filter } = this.props;
@@ -31,7 +31,7 @@ class StatisticsContainer extends Component {
           mapInfo={heatCars}
           loading={statisticsLoading || heatCarsLoading}
           filter={filter}
-          onHandleChange={this.handleChange}
+          // onHandleChange={this.handleChange}
         />
       </Dashboard>
     );
@@ -39,28 +39,29 @@ class StatisticsContainer extends Component {
 }
 
 StatisticsContainer.propTypes = {
+  amount: PropTypes.number,
   filter: PropTypes.string,
   heatCars: PropTypes.objectOf(),
   heatCarsLoading: PropTypes.bool,
-  hydrateMap: PropTypes.func,
-  hydrateStatistics: PropTypes.func,
+  hydrateBuyers: PropTypes.func,
+  hydrateSellers: PropTypes.func,
+  page: PropTypes.number,
   statistics: PropTypes.objectOf(),
-  statisticsLoading: PropTypes.bool,
-  updateFilter: PropTypes.func
+  statisticsLoading: PropTypes.bool
 };
 
 const mapStateToProps = store => ({
-  statistics: store.statistics.statistics,
-  heatCars: store.routes.heatCars,
-  statisticsLoading: store.statistics.loading,
-  heatCarsLoading: store.routes.loading,
-  filter: store.statistics.filter
+  buyers: store.marketPlace.buyers,
+  sellers: store.marketPlace.sellers,
+  loading: store.marketPlace.loading,
+  amount: store.marketPlace.amount,
+  page: store.marketPlace.page,
+  totalPages: store.marketPlace.totalPages
 });
 
 const mapDispatchToProps = dispatch => ({
-  hydrateMap: selectedOption => dispatch(mapActions.hydrateHeatmapCars(selectedOption)),
-  hydrateStatistics: selectedOption => dispatch(statisticsActions.hydrateStatistics(selectedOption)),
-  updateFilter: selectedOption => dispatch(statisticsActions.updateFilter(selectedOption))
+  hydrateSellers: selectedOption => dispatch(marketPlaceActions.hydrateSellers(selectedOption)),
+  hydrateBuyers: selectedOption => dispatch(marketPlaceActions.hydrateBuyers(selectedOption))
 });
 
 export default connect(

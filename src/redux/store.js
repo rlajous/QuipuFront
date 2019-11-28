@@ -12,7 +12,7 @@ import { reducer as auth } from './Auth/reducer';
 import { reducer as transactions } from './Transactions/reducer';
 import { reducer as routes } from './Routes/reducer';
 import { reducer as campaign } from './Campaign/reducer';
-import { reducer as statistics } from './Statistics/reducer';
+import { reducer as marketPlace } from './MarketPlace/reducer';
 import { reducer as modal } from './Modal/reducer';
 import { reducer as order } from './Order/reducer';
 
@@ -25,7 +25,7 @@ const reducers = combineReducers({
   transactions,
   campaign,
   routes,
-  statistics,
+  marketPlace,
   modal,
   order,
   router: connectRouter(history)

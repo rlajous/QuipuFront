@@ -7,7 +7,11 @@ import { actions } from './actions';
 const defaultState = {
   filter: 'day',
   loading: true,
-  statistics: null
+  sellers: [],
+  buyers: [],
+  amount: 10,
+  page: 0,
+  totalPages: 1
 };
 
 /* eslint-disable complexity */
@@ -20,19 +24,35 @@ export function reducer(state = Immutable(defaultState), action) {
         filter: action.payload.authData
       });
     }
-    case actions.HYDRATE_STATISTICS: {
+    case actions.HYDRATE_SELLERS: {
       return state.merge({ loading: true });
     }
-    case actions.HYDRATE_STATISTICS_SUCCESS: {
+    case actions.HYDRATE_SELLERS_SUCCESS: {
       return state.merge({
         loading: false,
-        statistics: action.payload
+        sellers: action.payload
       });
     }
-    case actions.HYDRATE_STATISTICS_FAILURE: {
+    case actions.HYDRATE_SELLERS_FAILURE: {
       return state.merge({
         loading: false,
-        statistics: null,
+        sellers: [],
+        err: action.payload.err
+      });
+    }
+    case actions.HYDRATE_BUYERS: {
+      return state.merge({ loading: true });
+    }
+    case actions.HYDRATE_BUYERS_SUCCESS: {
+      return state.merge({
+        loading: false,
+        buyers: action.payload
+      });
+    }
+    case actions.HYDRATE_BUYERS_FAILURE: {
+      return state.merge({
+        loading: false,
+        buyers: [],
         err: action.payload.err
       });
     }
