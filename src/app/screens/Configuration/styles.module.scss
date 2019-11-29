@@ -1,8 +1,14 @@
 .button {
   border-radius: 5px;
   height: 40px;
-  background-color: #E2E2E2;
-  color: black;
+  background-color: white;
+  color: #1FA8A1;
+  border: 1px solid #1FA8A1;
+  font-weight: bold;
+  &:hover {
+    background-color: #1FA8A1;
+    color: white;
+  }
 }
 
 .input {

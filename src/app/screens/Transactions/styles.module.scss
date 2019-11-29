@@ -53,11 +53,11 @@ $breakpoint-tablet: 768px;
 .loading {
   height: 100vh;
   margin: 0 auto;
+  padding: 40px 20px;
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-content: center;
   background-color: #F1F1F1;
 }
 
@@ -70,25 +70,36 @@ $breakpoint-tablet: 768px;
 .buy-button {
   border-radius: 5px;
   height: 40px;
-  background-color: #E2E2E2;
-  color: black;
   margin-right: 40px;
-  width: fit-content;
   padding: 10px;
   text-align: center;
   min-width: 130px;
   min-height: fit-content;
+  background-color: white;
+  color: #1FA8A1;
+  border: 1px solid #1FA8A1;
+  font-weight: bold;
+  &:hover {
+    background-color: #1FA8A1;
+    color: white;
+  }
 }
 
 .sell-button {
   border-radius: 5px;
   height: 40px;
-  background-color: #E2E2E2;
-  color: black;
   width: fit-content;
   padding: 10px;
   text-align: center;
   min-width: 130px;
+  background-color: white;
+  color: #1FA8A1;
+  border: 1px solid #1FA8A1;
+  font-weight: bold;
+  &:hover {
+    background-color: #1FA8A1;
+    color: white;
+  }
 }
 
 @media (max-width: $breakpoint-tablet) {

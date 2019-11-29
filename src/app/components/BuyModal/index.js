@@ -3,14 +3,15 @@ import Modal from 'react-modal';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { t } from 'i18next';
+import moment from 'moment';
+import CurrencyInput from 'react-currency-input';
 
 import InputLabel from '../InputLabel';
 import { actionCreators as orderActions } from '../../../redux/Order/actions';
 import { actionCreators as modalActions } from '../../../redux/Modal/actions';
 
 import { FIELDS } from './constants';
-
-import './styles.scss';
+import styles from './styles.module.scss';
 
 const customStyles = {
   content: {
@@ -18,21 +19,26 @@ const customStyles = {
     left: '50%',
     right: 'auto',
     bottom: 'auto',
+    width: '300px',
     marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
+    transform: 'translate(-50%, -50%)',
+    display: 'flex',
+    flexDirection: 'column'
   }
 };
 
 class BuyModal extends Component {
   handleCloseModal = () => {
-    const { handleBuyModalChange } = this.props;
+    const { handleBuyModalChange, handlePriceChange, handleTokenChange } = this.props;
     handleBuyModalChange(false);
+    handleTokenChange(0);
+    handlePriceChange(0);
   };
 
-  handleBuy = e => {
+  handleSell = e => {
     e.preventDefault();
     const { tokens, price } = this.props;
-    this.props.buy({ tokens, price });
+    this.props.buy({ tokens, price, date: moment('DD-MM-YYYY') });
   };
 
   onTokenChange = e => {
@@ -41,54 +47,55 @@ class BuyModal extends Component {
     handleTokenChange(value);
   };
 
-  onPriceChange = e => {
-    const { value } = e.target;
+  handlePriceChange = (event, maskedvalue, floatvalue) => {
     const { handlePriceChange } = this.props;
-    handlePriceChange(value);
+    handlePriceChange(floatvalue);
   };
 
   render() {
-    const { err, showBuyModal, success } = this.props;
+    const { err, showBuyModal, success, price } = this.props;
     return (
       <Modal isOpen={showBuyModal} onRequestClose={this.handleCloseModal} style={customStyles}>
-        <button type="button" onClick={this.handleCloseModal}>
-          close
+        <button type="button" onClick={this.handleCloseModal} className={styles.close}>
+          {t('Marketplace:close')}
         </button>
-        <form className="column center full-width" onSubmit={this.handleBuy}>
-          <div className="card-header">
-            <i className="fa fa-unlock icon-login" />
-          </div>
+        <form className="column center full-width" onSubmit={this.handleSell}>
           <div className="column m-bottom-2 ">
             <InputLabel
               label={t('Marketplace:tokens')}
+              className={styles.inputContainer}
               name={FIELDS.tokens}
               inputId={FIELDS.tokens}
               dataFor={FIELDS.tokens}
               inputType="number"
-              inputClassName="m-bottom-2 full-width "
-              textClassName="m-bottom-2 full-width"
+              inputClassName={styles.input}
+              textClassName={styles.inputText}
               placeholder={t('Marketplace:tokensPlaceholder')}
               handleChange={this.onTokenChange}
             />
-            <InputLabel
-              label={t('Marketplace:price')}
-              name={FIELDS.price}
-              inputId={FIELDS.price}
-              dataFor={FIELDS.price}
-              inputType="number"
-              inputClassName="m-bottom-2 full-width"
-              textClassName="m-bottom-2 full-width"
-              placeholder={t('Marketplace:pricePlaceholder')}
-              handleChange={this.onPriceChange}
-            />
+            <div className={styles.container}>
+              <label className={styles.label} htmlFor="price">
+                {t('Marketplace:price')}
+              </label>
+              <CurrencyInput
+                className={styles.input}
+                prefix="$"
+                decimalSeparator=","
+                thousandSeparator="."
+                precision="2"
+                id="price"
+                value={price}
+                onChangeEvent={this.handlePriceChange}
+              />
+            </div>
           </div>
           <div className="column center">
-            <button type="submit" className="full-width m-bottom-1 ">
+            <button type="submit" className={styles.button}>
               {t('Marketplace:buy')}
             </button>
           </div>
-          {!!err && <span className="column center ">{t('Marketplace:error')}</span>}
-          {!!success && <span className="column center ">{t('Marketplace:success')}</span>}
+          {!!err && <span className={styles.error}>{t('Marketplace:error')}</span>}
+          {!!success && <span className={styles.success}>{t('Marketplace:success')}</span>}
         </form>
       </Modal>
     );

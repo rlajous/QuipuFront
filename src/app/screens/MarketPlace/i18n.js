@@ -12,5 +12,11 @@ i18next.addResources('es', 'Marketplace', {
   sellers: 'Vendedores',
   buyers: 'Compradores',
   previous: 'Anterior',
-  next: 'Siguiente'
+  next: 'Siguiente',
+  close: 'Cerrar',
+  tokens: 'Cantidad',
+  price: 'Precio',
+  tokensPlaceholder: '0',
+  success: 'Orden Creada!!',
+  error: 'Lo sentimos intente mas tarde'
 });

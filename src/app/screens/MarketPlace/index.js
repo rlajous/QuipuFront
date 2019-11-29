@@ -19,17 +19,19 @@ class MarketPlaceContainer extends Component {
   }
 
   handleBuyers = () => {
-    const { hydrateBuyers, amount, page, sellers } = this.props;
-    const params = { amount, page };
+    const { hydrateBuyers, amount, updatePage, sellers } = this.props;
+    const params = { amount, page: 0 };
     if (sellers) {
+      updatePage(0);
       hydrateBuyers(params);
     }
   };
 
   handleSellers = () => {
-    const { hydrateSellers, amount, page, buyers } = this.props;
-    const params = { amount, page };
+    const { hydrateSellers, amount, updatePage, buyers } = this.props;
+    const params = { amount, page: 0 };
     if (buyers) {
+      updatePage(0);
       hydrateSellers(params);
     }
   };

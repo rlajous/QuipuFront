@@ -1,0 +1,79 @@
+.input-container {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-between;
+}
+
+.input-text {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.input {
+    width: 150px;
+    margin-left: 20px;
+    font-size: 18px;
+    line-height: 20px;
+    border: 1px solid #1FA8A1;
+    border-radius: 5px;
+    text-align: right;
+    padding: 0 5px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.close {
+    align-self: flex-end;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 20px;
+    margin-bottom: 30px;
+}
+
+.button {
+    margin-top: 10px;
+    border-radius: 5px;
+    height: 40px;
+    width: fit-content;
+    padding: 10px;
+    text-align: center;
+    min-width: 130px;
+    background-color: white;
+    color: #1FA8A1;
+    border: 1px solid #1FA8A1;
+    font-weight: bold;
+    &:hover {
+      background-color: #1FA8A1;
+      color: white;
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    justify-content: space-between;
+}
+
+.label {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.success {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 20px;
+    color: green;
+    margin: 10px 0;
+}
+
+.error {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 20px;
+    color: red;
+    margin: 10px 0;
+}

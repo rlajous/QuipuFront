@@ -111,14 +111,21 @@ function MarketPlace({
           previousLabel={t('Marketplace:previous')}
           nextLabel={t('Marketplace:next')}
           breakLabel="..."
-          breakClassName="break-me"
+          breakClassName={styles.break}
           pageCount={totalPages}
           marginPagesDisplayed={2}
           pageRangeDisplayed={5}
           onPageChange={onChangePage}
-          containerClassName="pagination"
-          subContainerClassName="pages pagination"
-          activeClassName="active"
+          containerClassName={styles.pagination}
+          pageClassName={styles.pages}
+          previousClassName={styles.nextPage}
+          nextClassName={styles.nextPage}
+          activeClassName={styles.active}
+          nextLinkClassName={styles.link}
+          previousLinkClassName={styles.link}
+          pageLinkClassName={styles.link}
+          breakLinkClassName={styles.link}
+          activeLinkClassName={styles.activeLink}
           initialPage={page}
           disableInitialCallback
         />
