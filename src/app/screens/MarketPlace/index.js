@@ -74,7 +74,6 @@ MarketPlaceContainer.propTypes = {
   hydrateBuyers: PropTypes.func,
   hydrateSellers: PropTypes.func,
   loading: PropTypes.bool,
-  // eslint-disable-next-line
   page: PropTypes.number,
   // eslint-disable-next-line
   sellers: PropTypes.array,

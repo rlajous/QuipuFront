@@ -102,6 +102,79 @@ $breakpoint-tablet: 768px;
   }
 }
 
+.break {
+  line-height: 14px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 10px;
+  text-align: center;
+  margin: auto 5px;
+  border: 1px solid #65BFBA;
+  background: white;
+
+  &:hover {
+    background: #07BEB8;
+  }
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  margin: 30px;
+  justify-content: center;
+}
+
+.pages {
+  line-height: 28px;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  text-align: center;
+  margin: auto 5px;
+  border: 1px solid #65BFBA;
+  background: white;
+
+  &:hover {
+    background: #07BEB8;
+  }
+}
+
+.link {
+  color: #65BFBA;
+  font-weight: bold;
+  line-height: 28px;
+  width: 100%;
+  height: 100%;
+
+  &:hover {
+    color: white;
+  }
+}
+
+.active {
+  background: #07BEB8;
+}
+
+.active-link {
+  color: white;
+}
+
+.next-page {
+  line-height: 28px;
+  min-width: 80px;
+  height: 30px;
+  border-radius: 10px;
+  text-align: center;
+  margin: auto 5px;
+  border: 1px solid #65BFBA;
+  background: white;
+
+  &:hover {
+    background: #07BEB8;
+  }
+}
+
 @media (max-width: $breakpoint-tablet) {
   .title {
     font-size: 18px;

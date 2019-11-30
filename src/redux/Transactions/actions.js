@@ -3,7 +3,7 @@ import { stringArrayToObject } from '../../utils/array';
 
 /* ------------- Auth actions ------------- */
 export const actions = stringArrayToObject(
-  ['HYDRATE_TRANSACTIONS', 'HYDRATE_TRANSACTIONS_SUCCESS', 'HYDRATE_TRANSACTIONS_FAILURE'],
+  ['PAGE', 'HYDRATE_TRANSACTIONS', 'HYDRATE_TRANSACTIONS_SUCCESS', 'HYDRATE_TRANSACTIONS_FAILURE'],
   '@@TRANSACTIONS'
 );
 
@@ -23,11 +23,17 @@ const privateActionCreators = {
 };
 
 export const actionCreators = {
-  hydrateTransactions() {
+  updatePage(page) {
+    return {
+      type: actions.PAGE,
+      payload: page
+    };
+  },
+  hydrateTransactions(filter) {
     return async dispatch => {
       dispatch({ type: actions.HYDRATE_TRANSACTIONS });
       try {
-        const response = await transactionsService.getTransactions();
+        const response = await transactionsService.getTransactions(filter);
         if (response.ok) {
           dispatch(privateActionCreators.hydrateTransactionsSuccess(response.data));
         } else {

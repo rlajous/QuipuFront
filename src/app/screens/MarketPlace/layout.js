@@ -9,6 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import ReactPaginate from 'react-paginate';
+import moment from 'moment';
 
 import { currencyFormat } from '../../../utils/parsers';
 import Loader from '../../components/Loader';
@@ -75,7 +76,9 @@ function MarketPlace({
                     {currencyFormat(row.price)}
                   </TableCell>
                   <TableCell align="center" className={styles.cell}>
-                    {row.date}
+                    {// eslint-disable-next-line
+                      row.date ? moment(row.date._seconds).format('DD MMM YYYY') : moment().format('DD MMM YYYY') 
+                    }
                   </TableCell>
                   <TableCell component="th" scope="row" align="center" className={styles.cell}>
                     {t('Marketplace:buy')}
@@ -95,7 +98,9 @@ function MarketPlace({
                     {currencyFormat(row.price)}
                   </TableCell>
                   <TableCell align="center" className={styles.cell}>
-                    {row.date}
+                    {// eslint-disable-next-line
+                      row.date ? moment(row.date._seconds).format('DD MMM YYYY') : moment().format('DD MMM YYYY') 
+                    }
                   </TableCell>
                   <TableCell component="th" scope="row" align="center" className={styles.cell}>
                     {t('Marketplace:sell')}
