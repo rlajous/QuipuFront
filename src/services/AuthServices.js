@@ -28,6 +28,10 @@ export const authSetup = async dispatch => {
 
 export const login = ({ email, password }) => myFirebase.auth().signInWithEmailAndPassword(email, password);
 
+export const recoverPassword = ({ email }) => myFirebase.auth().sendPasswordResetEmail(email);
+
+export const signUp = ({ email, password }) => api.get('/api/auth/signup', { email, password });
+
 export const edit = params => {
   api.post('/companies/edit', params);
   return { ok: true };

@@ -13,8 +13,10 @@ const defaultState = {
   initialLoading: true,
   email: '',
   password: '',
+  confirmPassword: '',
   err: null,
-  uid: null
+  uid: null,
+  success: false
 };
 
 /* eslint-disable complexity */
@@ -30,6 +32,11 @@ export function reducer(state = Immutable(defaultState), action) {
     case actions.PASSWORD: {
       return state.merge({
         password: action.payload
+      });
+    }
+    case actions.CONFIRM_PASSWORD: {
+      return state.merge({
+        confirmPassword: action.payload
       });
     }
     case actions.EMAIL: {
@@ -54,6 +61,35 @@ export function reducer(state = Immutable(defaultState), action) {
         loading: false,
         currentUser: null,
         company: null,
+        err: action.payload.err
+      });
+    }
+    case actions.RECOVER_PASSWORD: {
+      return state.merge({ loading: true });
+    }
+    case actions.RECOVER_PASSWORD_SUCCESS: {
+      return state.merge({
+        loading: false,
+        success: true
+      });
+    }
+    case actions.RECOVER_PASSWORD_FAILURE: {
+      return state.merge({
+        loading: false,
+        err: action.payload.err
+      });
+    }
+    case actions.SIGN_UP: {
+      return state.merge({ loading: true });
+    }
+    case actions.SIGN_UP_SUCCESS: {
+      return state.merge({
+        loading: false
+      });
+    }
+    case actions.SIGN_UP_FAILURE: {
+      return state.merge({
+        loading: false,
         err: action.payload.err
       });
     }

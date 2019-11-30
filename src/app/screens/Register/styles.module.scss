@@ -1,0 +1,43 @@
+.button {
+  border-radius: 5px;
+  height: 40px;
+  background-color: #E2E2E2;
+  color: black;
+}
+
+.input {
+  height: 40px;
+  padding: 0 5px;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.label {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.form-container {
+  display: flex;
+  align-content: center;
+  padding-top: 40px;
+  min-height: 500px;
+  height: 100vh;
+  background-color: #F1F1F1;
+}
+
+.section-container {
+  width: 100%;
+  max-width: 280px;
+}
+
+.logo {
+  height: 200px;
+}
+
+.error {
+  margin-top: 20px;
+  font-size: 18px;
+  color: red;
+}

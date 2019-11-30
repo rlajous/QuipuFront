@@ -14,8 +14,15 @@ export const actions = stringArrayToObject(
     'USER_SUCCESS',
     'USER_FAILURE',
     'LOGOUT',
+    'RECOVER_PASSWORD',
+    'RECOVER_PASSWORD_SUCCESS',
+    'RECOVER_PASSWORD_FAILURE',
+    'SIGN_UP',
+    'SIGN_UP_SUCCESS',
+    'SIGN_UP_FAILURE',
     'AUTH_INIT',
     'PASSWORD',
+    'CONFIRM_PASSWORD',
     'EMAIL',
     'EDIT',
     'EDIT_SUCCESS',
@@ -34,6 +41,28 @@ const privateActionCreators = {
   loginFailure(err) {
     return {
       type: actions.LOGIN_FAILURE,
+      payload: { err }
+    };
+  },
+  recoverPasswordSuccess() {
+    return {
+      type: actions.RECOVER_PASSWORD_SUCCESS
+    };
+  },
+  recoverPasswordFailure(err) {
+    return {
+      type: actions.RECOVER_PASSWORD_FAILURE,
+      payload: { err }
+    };
+  },
+  signUpSuccess() {
+    return {
+      type: actions.SIGN_UP_SUCCESS
+    };
+  },
+  signUpFailure(err) {
+    return {
+      type: actions.SIGN_UP_FAILURE,
       payload: { err }
     };
   },
@@ -76,6 +105,12 @@ export const actionCreators = {
       payload: password
     };
   },
+  handleConfirmPasswordChange(password) {
+    return {
+      type: actions.CONFIRM_PASSWORD,
+      payload: password
+    };
+  },
   handleEmailChange(email) {
     return {
       type: actions.EMAIL,
@@ -87,13 +122,37 @@ export const actionCreators = {
       dispatch({ type: actions.LOGIN });
       await AuthService.login(authData)
         .then(async user => {
-          console.log(user);
           await AuthService.setCurrentUser(user.user);
           dispatch(privateActionCreators.loginSuccess(user.user));
           dispatch(push(Routes.Profile));
         })
         .catch(error => {
           dispatch(privateActionCreators.loginFailure(error));
+        });
+    };
+  },
+  signUp(authData) {
+    return async dispatch => {
+      dispatch({ type: actions.SIGN_UP });
+      await AuthService.signUp(authData)
+        .then(() => {
+          dispatch(privateActionCreators.signUpSuccess());
+          dispatch(push(Routes.Login));
+        })
+        .catch(error => {
+          dispatch(privateActionCreators.signUpFailure(error));
+        });
+    };
+  },
+  recoverPassword(authData) {
+    return async dispatch => {
+      dispatch({ type: actions.RECOVER_PASSWORD });
+      await AuthService.recoverPassword(authData)
+        .then(() => {
+          dispatch(privateActionCreators.recoverPasswordSuccess());
+        })
+        .catch(error => {
+          dispatch(privateActionCreators.recoverPasswordFailure(error));
         });
     };
   },
@@ -124,6 +183,7 @@ export const actionCreators = {
         }
       } catch (e) {
         dispatch(privateActionCreators.userFailure(e));
+        actionCreators.logout();
       }
     };
   },

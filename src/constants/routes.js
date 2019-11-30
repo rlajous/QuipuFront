@@ -4,7 +4,9 @@ const Routes = {
   RECOVER_PASSWORD: '/forgot_password',
   Transactions: '/Transactions',
   MarketPlace: '/MarketPlace',
-  Configuration: '/Configuration'
+  Configuration: '/Configuration',
+  RecoverPassword: '/recoverPassword',
+  Register: '/register'
 };
 
 export default Routes;
