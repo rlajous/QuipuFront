@@ -5,7 +5,7 @@ import { actions } from './actions';
 
 /* ------------- Auth reducer ------------- */
 const defaultState = {
-  transactions: null,
+  transactions: [],
   loading: false,
   initialLoading: true,
   amount: 5,
@@ -24,7 +24,7 @@ export function reducer(state = Immutable(defaultState), action) {
       });
     }
     case actions.HYDRATE_TRANSACTIONS: {
-      return state.merge({ loading: true });
+      return state.merge({ loading: true, transactions: [] });
     }
     case actions.HYDRATE_TRANSACTIONS_SUCCESS: {
       return state.merge({

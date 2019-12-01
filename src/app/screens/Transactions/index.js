@@ -42,6 +42,7 @@ class TransactionsContainer extends Component {
           user={user}
           page={page}
           totalPages={totalPages}
+          onChangePage={this.handleChangePage}
           handleOpenSellModal={this.onOpenSellModal}
           handleOpenBuyModal={this.onOpenBuyModal}
         />
