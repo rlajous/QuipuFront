@@ -77,7 +77,7 @@ function MarketPlace({
                   </TableCell>
                   <TableCell align="center" className={styles.cell}>
                     {// eslint-disable-next-line
-                      row.date ? moment(row.date._seconds).format('DD-MM-YYYY') : moment().format('DD-MM-YYYY') 
+                      row.date ? moment.unix(row.date._seconds).format('DD-MM-YYYY') : moment().format('DD-MM-YYYY') 
                     }
                   </TableCell>
                   <TableCell component="th" scope="row" align="center" className={styles.cell}>
@@ -99,7 +99,7 @@ function MarketPlace({
                   </TableCell>
                   <TableCell align="center" className={styles.cell}>
                     {// eslint-disable-next-line
-                      row.date ? moment(row.date._seconds).format('DD-MM-YYYY') : moment().format('DD-MM-YYYY') 
+                      row.date ? moment.unix(row.date._seconds).format('DD-MM-YYYY') : moment().format('DD-MM-YYYY') 
                     }
                   </TableCell>
                   <TableCell component="th" scope="row" align="center" className={styles.cell}>
@@ -118,8 +118,8 @@ function MarketPlace({
           breakLabel="..."
           breakClassName={styles.break}
           pageCount={totalPages}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
+          marginPagesDisplayed={1}
+          pageRangeDisplayed={2}
           onPageChange={onChangePage}
           containerClassName={styles.pagination}
           pageClassName={styles.pages}

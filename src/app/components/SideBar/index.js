@@ -14,7 +14,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 
 import Routes from '../../../constants/routes';
-import defaultLogo from '../../assets/rappi-logo.png';
+import defaultLogo from '../../assets/logo_with_name.png';
 
 import styles from './styles.module.scss';
 

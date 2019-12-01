@@ -9,7 +9,7 @@ const defaultState = {
   loading: true,
   sellers: [],
   buyers: [],
-  amount: 5,
+  amount: 10,
   page: 0,
   totalPages: 1
 };

@@ -7,12 +7,11 @@ $breakpoint-tablet: 768px;
   background-color: white;
   z-index: 2;
   box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2);
+  align-items: center;
 }
 
 .logo {
   height: 60px;
-  padding-left: 20px;
-  justify-self: center;
 }
 
 .hide {
@@ -35,9 +34,9 @@ $breakpoint-tablet: 768px;
 
 @media (max-width: $breakpoint-tablet) {
   .logo {
-    justify-content: center;
-    margin-right: 48px;
     height: 30px;
+    margin: auto;
+    padding-right: 48px;
   }
 
   .navbar {
