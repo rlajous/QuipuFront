@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { actionCreators as modalActions } from '../../../redux/Modal/actions';
 import { actionCreators as marketPlaceActions } from '../../../redux/MarketPlace/actions';
 import Dashboard from '../../components/Dashboard';
 
@@ -47,6 +48,16 @@ class MarketPlaceContainer extends Component {
     }
   };
 
+  onOpenSellModal = () => {
+    const { handleSellModalChange } = this.props;
+    handleSellModalChange(true);
+  };
+
+  onOpenBuyModal = () => {
+    const { handleBuyModalChange } = this.props;
+    handleBuyModalChange(true);
+  };
+
   render() {
     const { sellers, buyers, loading, filter, page, totalPages } = this.props;
     return (
@@ -61,6 +72,8 @@ class MarketPlaceContainer extends Component {
           page={page}
           totalPages={totalPages}
           onChangePage={this.handleChangePage}
+          handleOpenSellModal={this.onOpenSellModal}
+          handleOpenBuyModal={this.onOpenBuyModal}
         />
       </Dashboard>
     );
@@ -71,6 +84,8 @@ MarketPlaceContainer.propTypes = {
   amount: PropTypes.number,
   buyers: PropTypes.arrayOf(),
   filter: PropTypes.string,
+  handleBuyModalChange: PropTypes.func,
+  handleSellModalChange: PropTypes.func,
   hydrateBuyers: PropTypes.func,
   hydrateSellers: PropTypes.func,
   loading: PropTypes.bool,
@@ -93,7 +108,9 @@ const mapStateToProps = store => ({
 const mapDispatchToProps = dispatch => ({
   hydrateSellers: selectedOption => dispatch(marketPlaceActions.hydrateSellers(selectedOption)),
   hydrateBuyers: selectedOption => dispatch(marketPlaceActions.hydrateBuyers(selectedOption)),
-  updatePage: selectedPage => dispatch(marketPlaceActions.updatePage(selectedPage))
+  updatePage: selectedPage => dispatch(marketPlaceActions.updatePage(selectedPage)),
+  handleSellModalChange: params => dispatch(modalActions.handleSellModalChange(params)),
+  handleBuyModalChange: params => dispatch(modalActions.handleBuyModalChange(params))
 });
 
 export default connect(

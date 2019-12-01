@@ -186,7 +186,6 @@ export const actionCreators = {
         }
       } catch (e) {
         dispatch(privateActionCreators.userFailure(e));
-        actionCreators.logout();
       }
     };
   },

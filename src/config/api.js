@@ -1,4 +1,5 @@
 import { create } from 'apisauce';
+import { actionCreators as userActions } from '../redux/Auth/actions';
 
 const STATUS_CODES = {
   unauthorized: 401
@@ -13,16 +14,13 @@ const api = create({
 export const apiSetup = dispatch => {
   api.addMonitor(response => {
     if (response.status === STATUS_CODES.unauthorized) {
-      /*
-       * TODO: These callbacks should only be called if no other callback was asigned for the response.
-       * - dispatch(alertActions.error(i18next.t('apiErrors:expired')));
-       */
+      dispatch(userActions.logout())
     }
   });
 
   api.addMonitor(response => {
     if (response.problem === 'NETWORK_ERROR') {
-      // TODO: These callbacks should only be called if no other callback was asigned for the response.
+      dispatch(userActions.logout())
     }
   });
 };

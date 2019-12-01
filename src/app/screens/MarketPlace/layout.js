@@ -24,12 +24,22 @@ function MarketPlace({
   onHandleSellers,
   onChangePage,
   totalPages,
+  handleOpenBuyModal,
+  handleOpenSellModal,
   page
 }) {
   return (
     <div className={loading ? styles.loading : styles.app}>
       <div className={styles.header}>
         <h1 className={styles.title}>{t('Marketplace:title')}</h1>
+      </div>
+      <div className={styles.buttons}>
+        <button type="button" onClick={handleOpenBuyModal} className={styles.buyButton}>
+          {t('Marketplace:buy')}
+        </button>
+        <button type="button" onClick={handleOpenSellModal} className={styles.sellButton}>
+          {t('Marketplace:sell')}
+        </button>
       </div>
       <div className={styles.tableFilter}>
         <button
@@ -60,9 +70,6 @@ function MarketPlace({
               <TableCell align="center" className={styles.cell}>
                 {t('Transactions:date')}
               </TableCell>
-              <TableCell align="center" className={styles.cell}>
-                {t('Marketplace:action')}
-              </TableCell>
             </TableRow>
           </TableHead>
           {!loading && !!sellers && (
@@ -79,9 +86,6 @@ function MarketPlace({
                     {// eslint-disable-next-line
                       row.date ? moment.unix(row.date._seconds).format('DD-MM-YYYY') : moment().format('DD-MM-YYYY') 
                     }
-                  </TableCell>
-                  <TableCell component="th" scope="row" align="center" className={styles.cell}>
-                    {t('Marketplace:buy')}
                   </TableCell>
                 </TableRow>
               ))}
@@ -101,9 +105,6 @@ function MarketPlace({
                     {// eslint-disable-next-line
                       row.date ? moment.unix(row.date._seconds).format('DD-MM-YYYY') : moment().format('DD-MM-YYYY') 
                     }
-                  </TableCell>
-                  <TableCell component="th" scope="row" align="center" className={styles.cell}>
-                    {t('Marketplace:sell')}
                   </TableCell>
                 </TableRow>
               ))}
@@ -146,6 +147,8 @@ function MarketPlace({
 
 MarketPlace.propTypes = {
   buyers: PropTypes.arrayOf(),
+  handleOpenBuyModal: PropTypes.func,
+  handleOpenSellModal: PropTypes.func,
   loading: PropTypes.bool,
   page: PropTypes.number,
   sellers: PropTypes.arrayOf(),

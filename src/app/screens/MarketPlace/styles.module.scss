@@ -92,6 +92,48 @@ $breakpoint-tablet: 768px;
   }
 }
 
+.buttons {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+  align-self: flex-start;
+}
+
+.buy-button {
+  border-radius: 5px;
+  height: 40px;
+  margin-right: 40px;
+  padding: 10px;
+  text-align: center;
+  min-width: 130px;
+  min-height: fit-content;
+  background-color: white;
+  color: #1FA8A1;
+  border: 1px solid #1FA8A1;
+  font-weight: bold;
+  &:hover {
+    background-color: #1FA8A1;
+    color: white;
+  }
+}
+
+.sell-button {
+  border-radius: 5px;
+  height: 40px;
+  width: fit-content;
+  padding: 10px;
+  text-align: center;
+  min-width: 130px;
+  background-color: white;
+  color: #1FA8A1;
+  border: 1px solid #1FA8A1;
+  font-weight: bold;
+  &:hover {
+    background-color: #1FA8A1;
+    color: white;
+  }
+}
+
 .head {
   background-color: #65BFBA;
   font-size: 20px;
