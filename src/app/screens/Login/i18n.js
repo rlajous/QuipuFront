@@ -9,5 +9,6 @@ i18next.addResources('es', 'Login', {
   emailPlaceholder: 'Ej: nombre@empresa.com',
   password: 'Contraseña',
   passwordPlaceholder: 'Ingrese su contraseña',
-  error: 'E-mail o contraseña invalidos'
+  error: 'E-mail o contraseña invalidos',
+  alreadyRegister: 'Ya tienes usuario?'
 });

@@ -5,7 +5,6 @@ const Routes = {
   Transactions: '/Transactions',
   MarketPlace: '/MarketPlace',
   Configuration: '/Configuration',
-  RecoverPassword: '/recoverPassword',
   Register: '/register'
 };
 

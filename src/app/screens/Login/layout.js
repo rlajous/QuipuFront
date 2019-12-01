@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { t } from 'i18next';
+import { NavLink } from 'react-router-dom';
 
+import Routes from '../../../constants/routes';
 import InputLabel from '../../components/InputLabel';
 import logo from '../../assets/logo_with_name.png';
 
@@ -14,15 +16,16 @@ function Login({ onEmailChange, onPasswordChange, onLogin, err }) {
       <div className="column center m-bottom-3">
         <img src={logo} alt="Logo" className={`${styles.logo}`} />
       </div>
+      <span className={`column center ${styles.title}`}>{t('Login:login')}</span>
       <div className={`column m-bottom-2 ${styles.sectionContainer}`}>
         <InputLabel
           label={t('Login:email')}
           name={FIELDS.email}
           inputId={FIELDS.email}
           dataFor={FIELDS.email}
-          inputType="text"
-          inputClassName={`m-bottom-2 full-width ${styles.input}`}
-          textClassName={`${styles.label}`}
+          inputType="email"
+          inputClassName={styles.input}
+          textClassName={styles.inputText}
           placeholder={t('Login:emailPlaceholder')}
           handleChange={onEmailChange}
         />
@@ -32,16 +35,19 @@ function Login({ onEmailChange, onPasswordChange, onLogin, err }) {
           inputId={FIELDS.password}
           dataFor={FIELDS.password}
           inputType="password"
-          inputClassName={`m-bottom-2 full-width ${styles.input}`}
-          textClassName={`${styles.label}`}
+          inputClassName={styles.input}
+          textClassName={styles.inputText}
           placeholder={t('Login:passwordPlaceholder')}
           handleChange={onPasswordChange}
         />
       </div>
-      <div className={`column center ${styles.sectionContainer}`}>
-        <button type="submit" className={`full-width m-bottom-1 ${styles.button}`}>
+      <div className={`row center ${styles.sectionContainer}`}>
+        <button type="submit" className={`${styles.button}`}>
           {t('Login:enter')}
         </button>
+        <NavLink to={Routes.Register} activeClassName={styles.bold}>
+          <span className={styles.button}>{t('SignUp:register')}</span>
+        </NavLink>
       </div>
       {!!err && <span className={`column center ${styles.error}`}>{t('Login:error')}</span>}
     </form>

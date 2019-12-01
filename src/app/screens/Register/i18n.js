@@ -1,8 +1,8 @@
 import i18next from 'i18next';
 
 i18next.addResources('es', 'SignUp', {
-  login: 'Iniciar sesión',
-  loginExplanation: 'Ingrese los siguientes datos',
+  register: 'Registrarme',
+  title: 'Registro',
   enter: 'Ingresar',
   forgotPassword: 'Olvidé mi contraseña',
   email: 'E-mail',

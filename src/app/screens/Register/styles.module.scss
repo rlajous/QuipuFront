@@ -6,6 +6,7 @@
 }
 
 .input {
+  border: 1px solid #1FA8A1;
   height: 40px;
   padding: 0 5px;
   border-radius: 5px;
@@ -14,8 +15,10 @@
 }
 
 .label {
-  margin-bottom: 10px;
+  font-weight: bold;
   font-size: 18px;
+  margin-bottom: 10px;
+  line-height: 20px;
 }
 
 .form-container {
@@ -40,4 +43,38 @@
   margin-top: 20px;
   font-size: 18px;
   color: red;
+}
+
+.button {
+  border-radius: 5px;
+  height: 40px;
+  padding: 10px;
+  text-align: center;
+  min-width: 130px;
+  min-height: fit-content;
+  background-color: white;
+  color: #1FA8A1;
+  border: 1px solid #1FA8A1;
+  font-weight: bold;
+  line-height: 19px;
+  margin: 10px;
+
+  &:hover {
+    background-color: #1FA8A1;
+    color: white;
+  }
+}
+
+.already {
+  font-size: 13px;
+  line-height: 29px;
+  padding: 5px;
+}
+
+.title {
+  font-size: 32px;
+  height: 38px;
+  line-height: 38px;
+  font-weight: bold;
+  margin: 20px;
 }

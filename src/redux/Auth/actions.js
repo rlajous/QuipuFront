@@ -134,14 +134,17 @@ export const actionCreators = {
   signUp(authData) {
     return async dispatch => {
       dispatch({ type: actions.SIGN_UP });
-      await AuthService.signUp(authData)
-        .then(() => {
+      try {
+        const response = await AuthService.signUp(authData);
+        if (response.ok) {
           dispatch(privateActionCreators.signUpSuccess());
           dispatch(push(Routes.Login));
-        })
-        .catch(error => {
-          dispatch(privateActionCreators.signUpFailure(error));
-        });
+        } else {
+          throw new Error('Invalid credentials');
+        }
+      } catch (e) {
+        dispatch(privateActionCreators.signUpFailure(e));
+      }
     };
   },
   recoverPassword(authData) {

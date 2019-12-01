@@ -26,12 +26,6 @@ class SignUpContainer extends Component {
     handlePasswordChange(value);
   };
 
-  handleConfirmPasswordChange = e => {
-    const { value } = e.target;
-    const { handleConfirmPasswordChange } = this.props;
-    handleConfirmPasswordChange(value);
-  };
-
   render() {
     const { err } = this.props;
     return (
@@ -39,7 +33,6 @@ class SignUpContainer extends Component {
         onEmailChange={this.handleEmailChange}
         onPasswordChange={this.handlePasswordChange}
         onSignUp={this.handleSignUp}
-        onConfirmPasswordChange={this.handleConfirmPasswordChange}
         err={err}
       />
     );
@@ -47,10 +40,8 @@ class SignUpContainer extends Component {
 }
 
 SignUpContainer.propTypes = {
-  confirmPassword: PropTypes.string,
   email: PropTypes.string,
   err: PropTypes.string,
-  handleConfirmPasswordChange: PropTypes.func,
   handleEmailChange: PropTypes.func,
   handlePasswordChange: PropTypes.func,
   password: PropTypes.string,
@@ -61,15 +52,13 @@ const mapStateToProps = store => ({
   currentUser: store.auth.currentUser,
   email: store.auth.email,
   password: store.auth.password,
-  confirmPassword: store.auth.confirmPassword,
   err: store.auth.err
 });
 
 const mapDispatchToProps = dispatch => ({
   signUp: params => dispatch(userActions.signUp(params)),
   handleEmailChange: params => dispatch(userActions.handleEmailChange(params)),
-  handlePasswordChange: params => dispatch(userActions.handlePasswordChange(params)),
-  handleConfirmPasswordChange: params => dispatch(userActions.handleConfirmPasswordChange(params))
+  handlePasswordChange: params => dispatch(userActions.handlePasswordChange(params))
 });
 
 export default connect(

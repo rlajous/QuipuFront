@@ -13,7 +13,8 @@ function InputLabel({
   inputType,
   handleChange,
   disabled,
-  value
+  value,
+  validate
 }) {
   return (
     <div className={`column start ${className}`}>
@@ -29,6 +30,7 @@ function InputLabel({
         onChange={handleChange}
         disabled={disabled}
         value={value}
+        validate={validate}
       />
     </div>
   );
@@ -46,6 +48,7 @@ InputLabel.propTypes = {
   inputClassName: PropTypes.string,
   placeholder: PropTypes.string,
   textClassName: PropTypes.string,
+  validate: PropTypes.arrayOf,
   value: PropTypes.string
 };
 

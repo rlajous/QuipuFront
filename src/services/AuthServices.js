@@ -30,7 +30,7 @@ export const login = ({ email, password }) => myFirebase.auth().signInWithEmailA
 
 export const recoverPassword = ({ email }) => myFirebase.auth().sendPasswordResetEmail(email);
 
-export const signUp = ({ email, password }) => api.get('/api/auth/signup', { email, password });
+export const signUp = ({ email, password }) => api.put('/api/auth/signup', { email, password });
 
 export const edit = params => {
   api.post('/companies/edit', params);

@@ -11,7 +11,6 @@ import styles from './styles.scss';
 
 const Login = lazy(() => import('../../screens/Login'));
 const Register = lazy(() => import('../../screens/Register'));
-const RecoverPassword = lazy(() => import('../../screens/RecoverPassword'));
 const Transactions = lazy(() => import('../../screens/Transactions'));
 const MarketPlace = lazy(() => import('../../screens/MarketPlace'));
 const Profile = lazy(() => import('../../screens/Profile'));
@@ -25,12 +24,6 @@ function AppRoutes() {
           <Switch>
             <AuthenticatedRoute isPublicRoute exact path={Routes.Login} component={Login} />
             <AuthenticatedRoute isPublicRoute exact path={Routes.Register} component={Register} />
-            <AuthenticatedRoute
-              isPublicRoute
-              exact
-              path={Routes.RecoverPassword}
-              component={RecoverPassword}
-            />
             <AuthenticatedRoute isPrivateRoute exact path={Routes.Transactions} component={Transactions} />
             <AuthenticatedRoute isPrivateRoute exact path={Routes.MarketPlace} component={MarketPlace} />
             <AuthenticatedRoute isPrivateRoute exact path={Routes.Configuration} component={Configuration} />
