@@ -20,6 +20,14 @@ export function reducer(state = Immutable(defaultState), action) {
         price: action.payload
       });
     }
+    case actions.RESET_ORDER: {
+      return state.merge({
+        price: 0,
+        tokens: 0,
+        success: false,
+        err: false
+      });
+    }
     case actions.TOKENS: {
       return state.merge({
         tokens: action.payload

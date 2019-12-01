@@ -29,10 +29,9 @@ const customStyles = {
 
 class SellModal extends Component {
   handleCloseModal = () => {
-    const { handleSellModalChange, handlePriceChange, handleTokenChange } = this.props;
+    const { handleSellModalChange, handleResetOrder } = this.props;
     handleSellModalChange(false);
-    handleTokenChange(0);
-    handlePriceChange(0);
+    handleResetOrder();
   };
 
   handleSell = e => {
@@ -105,6 +104,7 @@ class SellModal extends Component {
 SellModal.propTypes = {
   err: PropTypes.string,
   handlePriceChange: PropTypes.func,
+  handleResetOrder: PropTypes.func,
   handleSellModalChange: PropTypes.func,
   handleTokenChange: PropTypes.func,
   price: PropTypes.number,
@@ -127,7 +127,8 @@ const mapDispatchToProps = dispatch => ({
   sell: params => dispatch(orderActions.sell(params)),
   handleTokenChange: params => dispatch(orderActions.handleTokenChange(params)),
   handlePriceChange: params => dispatch(orderActions.handlePriceChange(params)),
-  handleSellModalChange: params => dispatch(modalActions.handleSellModalChange(params))
+  handleSellModalChange: params => dispatch(modalActions.handleSellModalChange(params)),
+  handleResetOrder: () => dispatch(orderActions.handleResetOrder())
 });
 
 export default connect(

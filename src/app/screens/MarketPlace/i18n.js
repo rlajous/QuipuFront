@@ -17,6 +17,6 @@ i18next.addResources('es', 'Marketplace', {
   tokens: 'Cantidad',
   price: 'Precio',
   tokensPlaceholder: '0',
-  success: 'Orden Creada!!',
+  success: '¡Orden creada!',
   error: 'Lo sentimos intente mas tarde'
 });

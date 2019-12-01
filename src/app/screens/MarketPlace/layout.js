@@ -77,7 +77,7 @@ function MarketPlace({
                   </TableCell>
                   <TableCell align="center" className={styles.cell}>
                     {// eslint-disable-next-line
-                      row.date ? moment(row.date._seconds).format('DD MMM YYYY') : moment().format('DD MMM YYYY') 
+                      row.date ? moment(row.date._seconds).format('DD-MM-YYYY') : moment().format('DD-MM-YYYY') 
                     }
                   </TableCell>
                   <TableCell component="th" scope="row" align="center" className={styles.cell}>
@@ -99,7 +99,7 @@ function MarketPlace({
                   </TableCell>
                   <TableCell align="center" className={styles.cell}>
                     {// eslint-disable-next-line
-                      row.date ? moment(row.date._seconds).format('DD MMM YYYY') : moment().format('DD MMM YYYY') 
+                      row.date ? moment(row.date._seconds).format('DD-MM-YYYY') : moment().format('DD-MM-YYYY') 
                     }
                   </TableCell>
                   <TableCell component="th" scope="row" align="center" className={styles.cell}>

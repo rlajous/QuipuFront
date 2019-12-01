@@ -3,7 +3,7 @@ import { stringArrayToObject } from '../../utils/array';
 
 /* ------------- Auth actions ------------- */
 export const actions = stringArrayToObject(
-  ['ORDER', 'ORDER_SUCCESS', 'ORDER_FAILURE', 'TOKENS', 'PRICE'],
+  ['ORDER', 'ORDER_SUCCESS', 'ORDER_FAILURE', 'TOKENS', 'PRICE', 'RESET_ORDER'],
   '@@ORDER'
 );
 
@@ -56,6 +56,11 @@ export const actionCreators = {
         .catch(error => {
           dispatch(privateActionCreators.orderFailure(error));
         });
+    };
+  },
+  handleResetOrder() {
+    return {
+      type: actions.RESET_ORDER
     };
   }
 };

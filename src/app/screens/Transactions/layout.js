@@ -71,7 +71,7 @@ function Transactions({
                   </TableCell>
                   <TableCell align="center" className={styles.cell}>
                     {// eslint-disable-next-line
-                    moment(row.date._seconds).format('DD MMM YYYY')
+                    moment(row.date._seconds).format('DD-MM-YYYY')
                     }
                   </TableCell>
                 </TableRow>
