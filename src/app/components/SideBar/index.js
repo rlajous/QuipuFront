@@ -10,7 +10,7 @@ import Divider from '@material-ui/core/Divider';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import SettingsIcon from '@material-ui/icons/Settings';
 import StoreIcon from '@material-ui/icons/Store';
-import PersonIcon from '@material-ui/icons/Person';
+import ReceiptIcon from '@material-ui/icons/Receipt';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 
 import Routes from '../../../constants/routes';
@@ -39,19 +39,14 @@ function SideBar({ image, onDrawerClose, open, toggleDrawer }) {
             </div>
             <img src={image || defaultLogo} alt="Logo" className={`${styles.logo}`} />
             <Divider />
-            <NavLink
-              exact
-              to={Routes.Profile}
-              className={styles.routeContainer}
-              activeClassName={styles.bold}
-            >
-              <PersonIcon />
-              <span className={styles.route}>{t('Routes:profile')}</span>
+            <NavLink exact to={Routes.Wallet} className={styles.routeContainer} activeClassName={styles.bold}>
+              <AccountBalanceWalletIcon />
+              <span className={styles.route}>{t('Routes:Wallet')}</span>
             </NavLink>
             <Divider />
-            <NavLink to={Routes.Transactions} className={styles.routeContainer} activeClassName={styles.bold}>
-              <AccountBalanceWalletIcon />
-              <span className={styles.route}>{t('Routes:transactions')}</span>
+            <NavLink to={Routes.Orders} className={styles.routeContainer} activeClassName={styles.bold}>
+              <ReceiptIcon />
+              <span className={styles.route}>{t('Routes:orders')}</span>
             </NavLink>
             <Divider />
             <NavLink to={Routes.MarketPlace} className={styles.routeContainer} activeClassName={styles.bold}>
@@ -81,14 +76,14 @@ function SideBar({ image, onDrawerClose, open, toggleDrawer }) {
         >
           <img src={image || defaultLogo} alt="Logo" className={`${styles.logo}`} />
           <Divider />
-          <NavLink exact to={Routes.Profile} className={styles.routeContainer} activeClassName={styles.bold}>
-            <PersonIcon />
-            <span className={styles.route}>{t('Routes:profile')}</span>
+          <NavLink exact to={Routes.Wallet} className={styles.routeContainer} activeClassName={styles.bold}>
+            <AccountBalanceWalletIcon />
+            <span className={styles.route}>{t('Routes:Wallet')}</span>
           </NavLink>
           <Divider />
-          <NavLink to={Routes.Transactions} className={styles.routeContainer} activeClassName={styles.bold}>
-            <AccountBalanceWalletIcon />
-            <span className={styles.route}>{t('Routes:transactions')}</span>
+          <NavLink to={Routes.Orders} className={styles.routeContainer} activeClassName={styles.bold}>
+            <ReceiptIcon />
+            <span className={styles.route}>{t('Routes:orders')}</span>
           </NavLink>
           <Divider />
           <NavLink to={Routes.MarketPlace} className={styles.routeContainer} activeClassName={styles.bold}>

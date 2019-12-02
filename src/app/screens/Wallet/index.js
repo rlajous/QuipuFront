@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import Dashboard from '../../components/Dashboard';
 import { actionCreators as modalActions } from '../../../redux/Modal/actions';
 import { actionCreators as transactionsActions } from '../../../redux/Transactions/actions';
-import Dashboard from '../../components/Dashboard';
 
-import Transactions from './layout';
+import Wallet from './layout';
 
-class TransactionsContainer extends Component {
+class WalletContainer extends Component {
   componentDidMount() {
     const { hydrateTransactions, amount, page } = this.props;
     const params = { amount, page };
@@ -36,7 +36,7 @@ class TransactionsContainer extends Component {
     const { transactions, loading, user, page, totalPages } = this.props;
     return (
       <Dashboard>
-        <Transactions
+        <Wallet
           transactions={transactions}
           loading={loading}
           user={user}
@@ -51,7 +51,7 @@ class TransactionsContainer extends Component {
   }
 }
 
-TransactionsContainer.propTypes = {
+WalletContainer.propTypes = {
   amount: PropTypes.number,
   handleBuyModalChange: PropTypes.func,
   handleSellModalChange: PropTypes.func,
@@ -85,4 +85,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(TransactionsContainer);
+)(WalletContainer);

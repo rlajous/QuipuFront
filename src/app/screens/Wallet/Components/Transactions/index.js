@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -6,53 +7,31 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { t } from 'i18next';
-import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
 import moment from 'moment';
 
-import { currencyFormat } from '../../../utils/parsers';
-import Loader from '../../components/Loader';
+import { currencyFormat } from '../../../../../utils/parsers';
 
 import styles from './styles.module.scss';
 
-function Transactions({
-  transactions,
-  loading,
-  user,
-  handleOpenBuyModal,
-  handleOpenSellModal,
-  onChangePage,
-  totalPages,
-  page
-}) {
+function Orders({ loading, transactions, user, totalPages, onChangePage, page }) {
   return (
-    <div className={loading ? styles.loading : styles.root}>
-      <div className={styles.header}>
-        <h1 className={styles.title}>{t('Transactions:title')}</h1>
-      </div>
-      <div className={styles.buttons}>
-        <button type="button" onClick={handleOpenBuyModal} className={styles.buyButton}>
-          {t('Marketplace:buy')}
-        </button>
-        <button type="button" onClick={handleOpenSellModal} className={styles.sellButton}>
-          {t('Marketplace:sell')}
-        </button>
-      </div>
+    <>
       <Paper className={styles.paper}>
         <Table size="medium">
           <TableHead className={styles.head}>
             <TableRow>
               <TableCell align="center" className={styles.cell}>
-                {t('Transactions:type')}
+                {t('Orders:type')}
               </TableCell>
               <TableCell align="center" className={styles.cell}>
-                {t('Transactions:tokens')}
+                {t('Orders:tokens')}
               </TableCell>
               <TableCell align="center" className={styles.cell}>
-                {t('Transactions:price')}
+                {t('Orders:price')}
               </TableCell>
               <TableCell align="center" className={styles.cell}>
-                {t('Transactions:date')}
+                {t('Orders:date')}
               </TableCell>
             </TableRow>
           </TableHead>
@@ -61,7 +40,7 @@ function Transactions({
               {transactions.map(row => (
                 <TableRow className={styles.row} key={row.name}>
                   <TableCell component="th" scope="row" align="center" className={styles.cell}>
-                    {row.sellerId === user.uid ? t('Transactions:sell') : t('Transactions:buy')}
+                    {row.sellerId === user.uid ? t('Orders:sells') : t('Orders:purchases')}
                   </TableCell>
                   <TableCell align="center" className={styles.cell}>
                     {row.tokens}
@@ -71,8 +50,8 @@ function Transactions({
                   </TableCell>
                   <TableCell align="center" className={styles.cell}>
                     {// eslint-disable-next-line
-                      row.date ? moment.unix(row.date._seconds).format('DD-MM-YYYY') : moment().format('DD-MM-YYYY') 
-                    }
+                          row.date ? moment.unix(row.date._seconds).format('DD-MM-YYYY') : moment().format('DD-MM-YYYY') 
+                      }
                   </TableCell>
                 </TableRow>
               ))}
@@ -104,22 +83,17 @@ function Transactions({
           disableInitialCallback
         />
       )}
-      {loading && <Loader />}
-    </div>
+    </>
   );
 }
 
-Transactions.propTypes = {
-  handleOpenBuyModal: PropTypes.func,
-  handleOpenSellModal: PropTypes.func,
+Orders.propTypes = {
   loading: PropTypes.bool,
   page: PropTypes.number,
   totalPages: PropTypes.number,
-  // eslint-disable-next-line
-  transactions: PropTypes.array,
-  // eslint-disable-next-line
-  user: PropTypes.object,
+  transactions: PropTypes.arrayOf,
+  user: PropTypes.objectOf,
   onChangePage: PropTypes.func
 };
 
-export default Transactions;
+export default Orders;

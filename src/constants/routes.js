@@ -1,8 +1,8 @@
 const Routes = {
-  Profile: '/',
+  Wallet: '/',
   Login: '/login',
   RECOVER_PASSWORD: '/forgot_password',
-  Transactions: '/Transactions',
+  Orders: '/Orders',
   MarketPlace: '/MarketPlace',
   Configuration: '/Configuration',
   Register: '/register'

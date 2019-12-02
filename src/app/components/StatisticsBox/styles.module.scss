@@ -1,9 +1,7 @@
 $breakpoint-tablet: 768px;
 
 .sidebar {
-  flex-grow: 1;
-  flex: 1 1 0;
-  height: 100px;
+  height: 60px;
   background-color: white;
   margin-right: 20px;
   align-content: center;
@@ -11,26 +9,23 @@ $breakpoint-tablet: 768px;
   text-align: center;
   border-radius: 20px;
   box-shadow: 5px 5px #E2E2E2;
-  min-width: 130px;
+  width: 230px;
+  margin-bottom: 40px;
 }
 
 .number {
   font-size: 30px;
+  line-height: 30px;
   height: 32px;
   color: #8ccdb0;
+  margin: auto 0;
 }
 
 .text {
   font-size: 20px;
+  line-height: 30px;
+  font-weight: bold;
+  height: 32px;
+  margin: auto 20px auto 10px;
 }
 
-@media (max-width: $breakpoint-tablet) {
-  .number {
-    font-size: 20px;
-    height: 22px;
-  }
-  
-  .text {
-    font-size: 10px;
-  }
-}

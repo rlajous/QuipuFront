@@ -124,7 +124,7 @@ export const actionCreators = {
         .then(async user => {
           await AuthService.setCurrentUser(user.user);
           dispatch(privateActionCreators.loginSuccess(user.user));
-          dispatch(push(Routes.Profile));
+          dispatch(push(Routes.Wallet));
         })
         .catch(error => {
           dispatch(privateActionCreators.loginFailure(error));
@@ -180,6 +180,7 @@ export const actionCreators = {
       try {
         const response = await AuthService.hydrateCurrentUser();
         if (response.ok) {
+          console.log(response.data);
           dispatch(privateActionCreators.userSuccess(response.data));
         } else {
           throw new Error('Invalid credentials');
