@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { reset, SubmissionError } from 'redux-form';
 import { t } from 'i18next';
-import moment from 'moment';
-import CurrencyInput from 'react-currency-input';
 
-import InputLabel from '../InputLabel';
 import { actionCreators as orderActions } from '../../../redux/Order/actions';
 import { actionCreators as modalActions } from '../../../redux/Modal/actions';
 
-import { FIELDS } from './constants';
-import styles from './styles.module.scss';
+import BuyModal from './layout';
 
 const customStyles = {
   content: {
@@ -27,97 +24,46 @@ const customStyles = {
   }
 };
 
-class BuyModal extends Component {
+class BuyModalContainer extends Component {
   handleCloseModal = () => {
-    const { handleBuyModalChange, handleResetOrder } = this.props;
+    const { handleBuyModalChange, handleResetOrder, resetForm } = this.props;
     handleBuyModalChange(false);
     handleResetOrder();
+    resetForm();
   };
 
-  handleSell = e => {
-    e.preventDefault();
-    const { tokens, price } = this.props;
-    this.props.buy({ tokens, price, date: moment('DD-MM-YYYY') });
-  };
-
-  onTokenChange = e => {
-    const { value } = e.target;
-    const { handleTokenChange } = this.props;
-    handleTokenChange(value);
-  };
-
-  handlePriceChange = (event, maskedvalue, floatvalue) => {
-    const { handlePriceChange } = this.props;
-    handlePriceChange(floatvalue);
+  onBuy = ({ tokens, price }) => {
+    if (tokens && price) {
+      this.props.buy({ tokens, price: parseFloat(price.substring(1)) });
+    } else {
+      throw new SubmissionError({
+        _error: t('Marketplace:emptyValues')
+      });
+    }
   };
 
   render() {
-    const { err, showBuyModal, success, price } = this.props;
+    const { err, showBuyModal, success } = this.props;
     return (
       <Modal isOpen={showBuyModal} onRequestClose={this.handleCloseModal} style={customStyles}>
-        <button type="button" onClick={this.handleCloseModal} className={styles.close}>
-          {t('Marketplace:close')}
-        </button>
-        <form className="column center full-width" onSubmit={this.handleSell}>
-          <div className="column m-bottom-2 ">
-            <InputLabel
-              label={t('Marketplace:tokens')}
-              className={styles.inputContainer}
-              name={FIELDS.tokens}
-              inputId={FIELDS.tokens}
-              dataFor={FIELDS.tokens}
-              inputType="number"
-              inputClassName={styles.input}
-              textClassName={styles.inputText}
-              placeholder={t('Marketplace:tokensPlaceholder')}
-              handleChange={this.onTokenChange}
-            />
-            <div className={styles.container}>
-              <label className={styles.label} htmlFor="price">
-                {t('Marketplace:price')}
-              </label>
-              <CurrencyInput
-                className={styles.input}
-                prefix="$"
-                decimalSeparator=","
-                thousandSeparator="."
-                precision="2"
-                id="price"
-                value={price}
-                onChangeEvent={this.handlePriceChange}
-              />
-            </div>
-          </div>
-          <div className="column center">
-            <button type="submit" className={styles.button}>
-              {t('Marketplace:buy')}
-            </button>
-          </div>
-          {!!err && <span className={styles.error}>{t('Marketplace:error')}</span>}
-          {!!success && <span className={styles.success}>{t('Marketplace:success')}</span>}
-        </form>
+        <BuyModal buy={this.onBuy} err={err} onCloseModal={this.handleCloseModal} success={success} />
       </Modal>
     );
   }
 }
 
-BuyModal.propTypes = {
+BuyModalContainer.propTypes = {
   buy: PropTypes.func,
   err: PropTypes.string,
   handleBuyModalChange: PropTypes.func,
-  handlePriceChange: PropTypes.func,
   handleResetOrder: PropTypes.func,
-  handleTokenChange: PropTypes.func,
-  price: PropTypes.number,
+  resetForm: PropTypes.func,
   showBuyModal: PropTypes.bool,
-  success: PropTypes.string,
-  tokens: PropTypes.number
+  success: PropTypes.string
 };
 
 const mapStateToProps = store => ({
   user: store.auth.user,
-  price: store.order.price,
-  tokens: store.order.tokens,
   err: store.order.err,
   success: store.order.success,
   showBuyModal: store.modal.showBuyModal
@@ -125,13 +71,12 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = dispatch => ({
   buy: params => dispatch(orderActions.buy(params)),
-  handleTokenChange: params => dispatch(orderActions.handleTokenChange(params)),
-  handlePriceChange: params => dispatch(orderActions.handlePriceChange(params)),
   handleBuyModalChange: params => dispatch(modalActions.handleBuyModalChange(params)),
-  handleResetOrder: () => dispatch(orderActions.handleResetOrder())
+  handleResetOrder: () => dispatch(orderActions.handleResetOrder()),
+  resetForm: () => dispatch(reset('BuyModal'))
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BuyModal);
+)(BuyModalContainer);

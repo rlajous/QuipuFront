@@ -24,14 +24,14 @@ const validate = values => {
   return errors;
 };
 
-function SignUp({ handleSubmit, err }) {
+function SignUp({ handleSubmit, signUp, err }) {
   return (
-    <Form className={`column center full-width ${styles.formContainer}`} onSubmit={handleSubmit}>
+    <Form className={`column center full-width ${styles.formContainer}`} onSubmit={handleSubmit(signUp)}>
       <div className="column center m-bottom-3">
         <img src={logo} alt="Logo" className={`${styles.logo}`} />
       </div>
       <span className={`column center ${styles.title}`}>{t('SignUp:title')}</span>
-      <div className={`column m-bottom-2 ${styles.sectionContainer}`}>
+      <div className={`column ${styles.sectionContainer}`}>
         <Field
           label={t('SignUp:email')}
           name={FIELDS.email}
@@ -87,7 +87,8 @@ function SignUp({ handleSubmit, err }) {
 
 SignUp.propTypes = {
   err: PropTypes.string.isRequired,
-  handleSubmit: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired,
+  signUp: PropTypes.func.isRequired
 };
 
 export default reduxForm({

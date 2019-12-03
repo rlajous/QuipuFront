@@ -1,3 +1,5 @@
+$breakpoint-tablet: 768px;
+
 .button {
   border-radius: 5px;
   height: 40px;
@@ -38,7 +40,7 @@
   padding: 0 5px;
   border-radius: 5px;
   font-size: 18px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 
@@ -72,4 +74,30 @@
   line-height: 38px;
   font-weight: bold;
   margin: 20px;
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .logo {
+    height: 150px;
+  }
+
+  .title {
+    font-size: 28px;
+    height: 30px;
+    line-height: 30px;
+    margin: 10px;
+  }
+
+  .input {
+    height: 40px;
+    padding: 0 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  .button {
+    font-size: 13px;
+
+  }  
 }

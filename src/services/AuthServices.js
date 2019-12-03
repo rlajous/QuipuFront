@@ -32,9 +32,6 @@ export const recoverPassword = ({ email }) => myFirebase.auth().sendPasswordRese
 
 export const signUp = ({ email, password }) => api.put('/api/auth/signup', { email, password });
 
-export const edit = params => {
-  api.post('/companies/edit', params);
-  return { ok: true };
-};
+export const edit = ({ email, password }) => api.post('/api/auth/editUser', { email, password });
 
 export const hydrateCurrentUser = () => api.get('/api/auth/user');

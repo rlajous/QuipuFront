@@ -23,3 +23,14 @@ export const numericalFourDigits = errorMessage => pattern(numericalFourDigitsRe
 export const numericalTenDigits = errorMessage => pattern(numericalTenDigitsRegex, errorMessage);
 
 export const numericalDigits = errorMessage => pattern(numericalDigitsRegex, errorMessage);
+
+export const number = errorMessage => value => (value && isNaN(Number(value)) ? errorMessage : undefined);
+
+export const minValue = (errorMessage, min) => value =>
+  value && value < min ? errorMessage + min : undefined;
+
+export const stringMinValue = (errorMessage, min) => value =>
+  value && parseFloat(value.substring(1)) < min ? errorMessage + min : undefined;
+
+export const maxValue = (errorMessage, max) => value =>
+  value && value > max ? errorMessage + max : undefined;

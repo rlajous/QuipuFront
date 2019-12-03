@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CurrencyInput from 'react-currency-input';
 
 import styles from './styles.module.scss';
 
@@ -15,7 +16,6 @@ function InputLabel({
   inputType,
   handleChange,
   disabled,
-  value,
   validate,
   meta,
   input,
@@ -25,12 +25,15 @@ function InputLabel({
   console.log({ touched, error, warning });
   return (
     <div className="column">
-      <div className={`column start ${className} `}>
+      <div className={`start ${className} `}>
         <label className={`m-bottom-1 ${textClassName}`} htmlFor={dataFor}>
           {label}
         </label>
-        <input
-          {...input}
+        <CurrencyInput
+          prefix="$"
+          decimalSeparator="."
+          thousandSeparator=""
+          precision="2"
           className={`${inputClassName}  ${error && touched && !active ? styles.inputError : ''}`}
           name={name}
           placeholder={placeholder}
@@ -38,9 +41,9 @@ function InputLabel({
           type={inputType}
           onChange={handleChange}
           disabled={disabled}
-          value={value}
           validate={validate}
           autoFocus={autoFocus}
+          {...input}
         />
       </div>
       {meta.error && meta.touched && !meta.active && <div className={styles.error}>{meta.error}</div>}

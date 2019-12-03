@@ -1,3 +1,5 @@
+$breakpoint-tablet: 768px;
+
 .input-container {
     display: flex;
     flex-direction: row !important;
@@ -21,6 +23,7 @@
     padding: 0 5px;
     font-size: 18px;
     line-height: 20px;
+    margin-bottom: 40px;
 }
 
 .close {
@@ -43,9 +46,15 @@
     color: #1FA8A1;
     border: 1px solid #1FA8A1;
     font-weight: bold;
+    margin-bottom: 40px;
+
     &:hover {
       background-color: #1FA8A1;
       color: white;
+    }
+
+    .error {
+        margin-bottom: 0;
     }
 }
 
@@ -76,4 +85,11 @@
     line-height: 20px;
     color: red;
     margin: 10px 0;
+}
+
+@media (max-width: $breakpoint-tablet) {
+    .input {
+        margin-bottom: 33px;
+        height: 22px;
+    }
 }

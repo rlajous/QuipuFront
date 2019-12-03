@@ -2,44 +2,39 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { actionCreators as modalActions } from '../../../redux/Modal/actions';
 import { actionCreators as userActions } from '../../../redux/Auth/actions';
 import Dashboard from '../../components/Dashboard';
 
 import Configuration from './layout';
 
 class ConfigurationContainer extends Component {
+  componentDidMount() {
+    const { handleBuyModalChange, handleSellModalChange } = this.props;
+    handleBuyModalChange(false);
+    handleSellModalChange(false);
+  }
+
   handleLogOut = values => {
     this.props.logout(values);
   };
 
-  handleEdit = e => {
-    e.preventDefault();
-    const { newEmail: email, newPasword: password } = this.props;
+  handleEdit = ({ newEmail: email, password }) => {
     this.props.edit({ email, password });
   };
 
-  handleEmailChange = e => {
-    const { value } = e.target;
-    const { handleEmailChange } = this.props;
-    handleEmailChange(value);
-  };
-
-  handlePasswordChange = e => {
-    const { value } = e.target;
-    const { handlePasswordChange } = this.props;
-    handlePasswordChange(value);
-  };
-
   render() {
-    const { user } = this.props;
+    const { user, err, success, loading } = this.props;
     return (
       <Dashboard>
         <Configuration
-          onEmailChange={this.handleEmailChange}
-          onPasswordChange={this.handlePasswordChange}
           onEdit={this.handleEdit}
           onLogout={this.handleLogOut}
           user={user}
+          initialValues={{ newEmail: user && user.email }}
+          success={success}
+          error={err}
+          loading={loading}
         />
       </Dashboard>
     );
@@ -48,13 +43,13 @@ class ConfigurationContainer extends Component {
 
 ConfigurationContainer.propTypes = {
   edit: PropTypes.func,
-  handleEmailChange: PropTypes.func,
-  handlePasswordChange: PropTypes.func,
+  err: PropTypes.func,
+  handleBuyModalChange: PropTypes.func,
+  handleSellModalChange: PropTypes.func,
+  loading: PropTypes.bool,
   logout: PropTypes.func,
-  newEmail: PropTypes.string,
-  newPasword: PropTypes.string,
-  // eslint-disable-next-line
-  user: PropTypes.object
+  success: PropTypes.bool,
+  user: PropTypes.objectOf
 };
 
 const mapStateToProps = store => ({
@@ -62,14 +57,16 @@ const mapStateToProps = store => ({
   user: store.auth.user,
   newEmail: store.auth.email,
   newPasword: store.auth.password,
-  err: store.auth.err
+  err: store.auth.err,
+  success: store.auth.success,
+  loading: store.auth.editLoading
 });
 
 const mapDispatchToProps = dispatch => ({
   logout: params => dispatch(userActions.logout(params)),
   edit: params => dispatch(userActions.edit(params)),
-  handleEmailChange: params => dispatch(userActions.handleEmailChange(params)),
-  handlePasswordChange: params => dispatch(userActions.handlePasswordChange(params))
+  handleSellModalChange: params => dispatch(modalActions.handleSellModalChange(params)),
+  handleBuyModalChange: params => dispatch(modalActions.handleBuyModalChange(params))
 });
 
 export default connect(

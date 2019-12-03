@@ -7,16 +7,13 @@ import { actionCreators as userActions } from '../../../redux/Auth/actions';
 import SignUp from './layout';
 
 class SignUpContainer extends Component {
-  onHandleSignUp = ({ email, password }) => {
-    console.log({ email, password });
-    // const { email, password } = this.props;
-    // checkaer que las contrase;as sean iguales
-    // this.props.signUp({ email, password });
+  onSignUp = ({ email, password }) => {
+    this.props.signUp({ email, password });
   };
 
   render() {
     const { err } = this.props;
-    return <SignUp handleSubmit={this.onHandleSignUp} err={err} />;
+    return <SignUp signUp={this.onSignUp} err={err} />;
   }
 }
 

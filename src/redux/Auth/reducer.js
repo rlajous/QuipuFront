@@ -16,7 +16,8 @@ const defaultState = {
   confirmPassword: '',
   err: null,
   uid: null,
-  success: false
+  success: false,
+  editLoading: false
 };
 
 /* eslint-disable complexity */
@@ -94,18 +95,18 @@ export function reducer(state = Immutable(defaultState), action) {
       });
     }
     case actions.EDIT: {
-      return state.merge({ loading: true });
+      return state.merge({ editLoading: true, success: false, err: false });
     }
     case actions.EDIT_SUCCESS: {
       return state.merge({
-        loading: false,
-        editSucces: true
+        editLoading: false,
+        success: true
       });
     }
     case actions.EDIT_FAILURE: {
       return state.merge({
-        loading: false,
-        editSucces: false,
+        editLoading: false,
+        success: false,
         err: action.payload.err
       });
     }

@@ -180,7 +180,6 @@ export const actionCreators = {
       try {
         const response = await AuthService.hydrateCurrentUser();
         if (response.ok) {
-          console.log(response.data);
           dispatch(privateActionCreators.userSuccess(response.data));
         } else {
           throw new Error('Invalid credentials');

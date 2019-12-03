@@ -8,5 +8,7 @@ i18next.addResources('es', 'Configuration', {
   password: 'Contraseña Nueva',
   passwordPlaceholder: 'Ingrese su contraseña',
   logout: 'Cerrar Sesión',
-  title: 'Configuración'
+  title: 'Configuración',
+  success: 'Usuario editado!',
+  error: 'Lo sentimos intente mas tarde'
 });

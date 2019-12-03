@@ -19,5 +19,9 @@ i18next.addResources('es', 'Marketplace', {
   tokensPlaceholder: '0',
   success: '¡Orden creada!',
   error: 'Lo sentimos intente mas tarde',
-  yourTokens: 'Tus Tokens'
+  yourTokens: 'Tus Tokens',
+  minTokens: 'Cantidad minima de tokens: ',
+  minPrice: 'Precio minimo: ',
+  maxTokens: 'Cantidad maxima de tokens: ',
+  emptyValues: 'Ingrese valores porfavor'
 });
