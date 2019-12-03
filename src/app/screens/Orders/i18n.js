@@ -10,7 +10,7 @@ i18next.addResources('es', 'Orders', {
   previous: 'Anterior',
   next: 'Siguiente',
   close: 'Cerrar',
-  tokens: 'Cantidad',
+  tokens: 'Tokens',
   price: 'Precio',
   tokensPlaceholder: '0',
   success: '¡Orden creada!',

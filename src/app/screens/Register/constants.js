@@ -1,4 +1,5 @@
 export const FIELDS = {
   email: 'email',
-  password: 'password'
+  password: 'password',
+  confirmPassword: 'confirmPassword'
 };

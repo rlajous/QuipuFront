@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { t } from 'i18next';
 import { NavLink } from 'react-router-dom';
+import { Field, reduxForm, Form } from 'redux-form';
 
+import { required, email } from '../../../utils/inputValidations';
 import Routes from '../../../constants/routes';
 import InputLabel from '../../components/InputLabel';
 import logo from '../../assets/logo_with_name.png';
@@ -10,35 +12,64 @@ import logo from '../../assets/logo_with_name.png';
 import { FIELDS } from './constants';
 import styles from './styles.module.scss';
 
-function SignUp({ onEmailChange, onPasswordChange, onSignUp, err }) {
+const passwordValidation = [required(t('SignUp:required'))];
+const emailValidation = [required(t('SignUp:required')), email(t('SignUp:emailError'))];
+
+const validate = values => {
+  const errors = {};
+  if (values[FIELDS.confirmPassword] !== values[FIELDS.password]) {
+    errors[FIELDS.confirmPassword] = t('SignUp:missmatchPassword');
+  }
+
+  return errors;
+};
+
+function SignUp({ handleSubmit, err }) {
   return (
-    <form className={`column center full-width ${styles.formContainer}`} onSubmit={onSignUp}>
+    <Form className={`column center full-width ${styles.formContainer}`} onSubmit={handleSubmit}>
       <div className="column center m-bottom-3">
         <img src={logo} alt="Logo" className={`${styles.logo}`} />
       </div>
       <span className={`column center ${styles.title}`}>{t('SignUp:title')}</span>
       <div className={`column m-bottom-2 ${styles.sectionContainer}`}>
-        <InputLabel
+        <Field
           label={t('SignUp:email')}
           name={FIELDS.email}
           inputId={FIELDS.email}
           dataFor={FIELDS.email}
           inputType="text"
+          type="text"
+          component={InputLabel}
+          validate={emailValidation}
           inputClassName={`m-bottom-2 full-width ${styles.input}`}
           textClassName={`${styles.label}`}
           placeholder={t('SignUp:emailPlaceholder')}
-          handleChange={onEmailChange}
         />
-        <InputLabel
+        <Field
           label={t('SignUp:password')}
           name={FIELDS.password}
           inputId={FIELDS.password}
           dataFor={FIELDS.password}
           inputType="password"
+          type="password"
+          validate={passwordValidation}
+          component={InputLabel}
           inputClassName={`m-bottom-2 full-width ${styles.input}`}
           textClassName={`${styles.label}`}
           placeholder={t('SignUp:passwordPlaceholder')}
-          handleChange={onPasswordChange}
+        />
+        <Field
+          label={t('SignUp:confirmPassword')}
+          name={FIELDS.confirmPassword}
+          inputId={FIELDS.confirmPassword}
+          dataFor={FIELDS.confirmPassword}
+          inputType="password"
+          type="password"
+          validate={passwordValidation}
+          component={InputLabel}
+          inputClassName={`m-bottom-2 full-width ${styles.input}`}
+          textClassName={`${styles.label}`}
+          placeholder={t('SignUp:confirmPasswordPlaceholder')}
         />
       </div>
       <div className={`row center ${styles.sectionContainer}`}>
@@ -50,15 +81,16 @@ function SignUp({ onEmailChange, onPasswordChange, onSignUp, err }) {
         </NavLink>
       </div>
       {!!err && <span className={`column center ${styles.error}`}>{t('SignUp:error')}</span>}
-    </form>
+    </Form>
   );
 }
 
 SignUp.propTypes = {
   err: PropTypes.string.isRequired,
-  onEmailChange: PropTypes.func.isRequired,
-  onPasswordChange: PropTypes.func.isRequired,
-  onSignUp: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired
 };
 
-export default SignUp;
+export default reduxForm({
+  form: 'signUp',
+  validate
+})(SignUp);

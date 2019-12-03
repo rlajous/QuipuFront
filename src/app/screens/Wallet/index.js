@@ -10,7 +10,9 @@ import Wallet from './layout';
 
 class WalletContainer extends Component {
   componentDidMount() {
-    const { hydrateTransactions, amount, page } = this.props;
+    const { hydrateTransactions, amount, page, handleBuyModalChange, handleSellModalChange } = this.props;
+    handleBuyModalChange(false);
+    handleSellModalChange(false);
     const params = { amount, page };
     hydrateTransactions(params);
   }

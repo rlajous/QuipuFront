@@ -81,25 +81,27 @@ export const actionCreators = {
   buy(orderData) {
     return async dispatch => {
       dispatch({ type: actions.ORDER });
-      await OrderService.buy(orderData)
-        .then(() => {
+      try {
+        const response = await OrderService.buy(orderData);
+        if (response.ok) {
           dispatch(privateActionCreators.orderSuccess());
-        })
-        .catch(error => {
-          dispatch(privateActionCreators.orderFailure(error));
-        });
+        }
+      } catch (e) {
+        dispatch(privateActionCreators.orderFailure(e));
+      }
     };
   },
   sell(orderData) {
     return async dispatch => {
       dispatch({ type: actions.ORDER });
-      await OrderService.sell(orderData)
-        .then(() => {
+      try {
+        const response = await OrderService.sell(orderData);
+        if (response.ok) {
           dispatch(privateActionCreators.orderSuccess());
-        })
-        .catch(error => {
-          dispatch(privateActionCreators.orderFailure(error));
-        });
+        }
+      } catch (e) {
+        dispatch(privateActionCreators.orderFailure(e));
+      }
     };
   },
   handleResetOrder() {

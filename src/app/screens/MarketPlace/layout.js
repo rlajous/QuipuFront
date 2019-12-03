@@ -62,13 +62,13 @@ function MarketPlace({
           <TableHead className={styles.head}>
             <TableRow>
               <TableCell align="center" className={styles.cell}>
-                {t('Transactions:tokens')}
+                {t('Orders:tokens')}
               </TableCell>
               <TableCell align="center" className={styles.cell}>
-                {t('Transactions:price')}
+                {t('Orders:price')}
               </TableCell>
               <TableCell align="center" className={styles.cell}>
-                {t('Transactions:date')}
+                {t('Orders:date')}
               </TableCell>
             </TableRow>
           </TableHead>

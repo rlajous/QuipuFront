@@ -52,13 +52,21 @@ class SellModal extends Component {
   };
 
   render() {
-    const { err, showSellModal, success, price } = this.props;
+    const { err, showSellModal, success, price, user } = this.props;
     return (
       <Modal isOpen={showSellModal} onRequestClose={this.handleCloseModal} style={customStyles}>
         <button type="button" onClick={this.handleCloseModal} className={styles.close}>
           {t('Marketplace:close')}
         </button>
         <form className="column center full-width" onSubmit={this.handleSell}>
+          {user && (
+            <div className={styles.container}>
+              <label className={styles.label} htmlFor="price">
+                {t('Marketplace:yourTokens')}
+              </label>
+              <span className={styles.number}>{user.tokens}</span>
+            </div>
+          )}
           <div className="column m-bottom-2 ">
             <InputLabel
               label={t('Marketplace:tokens')}
@@ -111,7 +119,8 @@ SellModal.propTypes = {
   sell: PropTypes.func,
   showSellModal: PropTypes.bool,
   success: PropTypes.string,
-  tokens: PropTypes.number
+  tokens: PropTypes.number,
+  user: PropTypes.objectOf
 };
 
 const mapStateToProps = store => ({

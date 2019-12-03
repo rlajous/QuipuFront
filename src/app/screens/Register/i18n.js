@@ -9,5 +9,10 @@ i18next.addResources('es', 'SignUp', {
   emailPlaceholder: 'Ej: nombre@empresa.com',
   password: 'Contraseña',
   passwordPlaceholder: 'Ingrese su contraseña',
-  error: 'E-mail ya registrado'
+  error: 'E-mail ya registrado',
+  required: 'Este campo es requerido',
+  emailError: 'Ingrese un mail valido',
+  confirmPassword: 'Confirmar Contraseña',
+  confirmPasswordPlaceholder: 'Ingrese devuelta su contraseña',
+  missmatchPassword: 'Las contraseñas no coinciden'
 });

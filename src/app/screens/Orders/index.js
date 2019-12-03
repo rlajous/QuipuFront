@@ -10,8 +10,18 @@ import Orders from './layout';
 
 class OrdersContainer extends Component {
   componentDidMount() {
-    const { hydratePurchases, amount, page, sells, hydrateSells } = this.props;
+    const {
+      hydratePurchases,
+      amount,
+      page,
+      sells,
+      hydrateSells,
+      handleBuyModalChange,
+      handleSellModalChange
+    } = this.props;
     const params = { amount, page };
+    handleBuyModalChange(false);
+    handleSellModalChange(false);
     if (sells.length) {
       hydrateSells(params);
     } else {

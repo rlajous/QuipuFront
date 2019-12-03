@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import styles from './styles.module.scss';
+
 function InputLabel({
   className,
   textClassName,
@@ -14,15 +16,21 @@ function InputLabel({
   handleChange,
   disabled,
   value,
-  validate
+  validate,
+  meta,
+  input,
+  autoFocus
 }) {
+  const { touched, error, warning,  active } = meta;
+  console.log({ touched, error, warning });
   return (
-    <div className={`column start ${className}`}>
+    <div className={`column start ${className} `}>
       <label className={`m-bottom-1 ${textClassName}`} htmlFor={dataFor}>
         {label}
       </label>
       <input
-        className={inputClassName}
+        {...input}
+        className={`${inputClassName}  ${error && touched && !active ? styles.inputError : ''}`}
         name={name}
         placeholder={placeholder}
         id={inputId}
@@ -31,7 +39,9 @@ function InputLabel({
         disabled={disabled}
         value={value}
         validate={validate}
+        autoFocus={autoFocus}
       />
+      {meta.error && meta.touched && !meta.active && <div className={styles.error}>{meta.error}</div>}
     </div>
   );
 }

@@ -10,8 +10,18 @@ import MarketPlace from './layout';
 
 class MarketPlaceContainer extends Component {
   componentDidMount() {
-    const { hydrateBuyers, amount, page, sellers, hydrateSellers } = this.props;
+    const {
+      hydrateBuyers,
+      amount,
+      page,
+      sellers,
+      hydrateSellers,
+      handleBuyModalChange,
+      handleSellModalChange
+    } = this.props;
     const params = { amount, page };
+    handleBuyModalChange(false);
+    handleSellModalChange(false);
     if (sellers.length) {
       hydrateSellers(params);
     } else {

@@ -54,6 +54,8 @@
     flex-direction: row;
     margin-top: 10px;
     justify-content: space-between;
+    width: 100%;
+    margin-bottom: 5px;
 }
 
 .label {
@@ -77,3 +79,11 @@
     color: red;
     margin: 10px 0;
 }
+
+.number {
+    font-size: 30px;
+    line-height: 30px;
+    height: 32px;
+    color: #65BFBA;
+    margin: auto 0;
+  }
