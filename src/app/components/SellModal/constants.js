@@ -1,6 +1,6 @@
 export const FIELDS = {
   tokens: 'tokens',
-  price: 'password'
+  price: 'price'
 };
 
 export const MIN_PRICE = 0.01;
