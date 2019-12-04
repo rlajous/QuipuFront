@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import Dashboard from '../../components/Dashboard';
 import { actionCreators as modalActions } from '../../../redux/Modal/actions';
 import { actionCreators as transactionsActions } from '../../../redux/Transactions/actions';
+import { propTypes as transactionsProptypes } from '../../../redux/Transactions/reducer';
+import { propTypes as userProptypes } from '../../../redux/Auth/reducer';
 
 import Wallet from './layout';
 
@@ -61,11 +63,9 @@ WalletContainer.propTypes = {
   loading: PropTypes.bool,
   page: PropTypes.number,
   totalPages: PropTypes.number,
-  // eslint-disable-next-line
-  transactions: PropTypes.array,
+  transactions: transactionsProptypes.transactions,
   updatePage: PropTypes.func,
-  // eslint-disable-next-line
-  user: PropTypes.object
+  user: userProptypes.user
 };
 
 const mapStateToProps = store => ({

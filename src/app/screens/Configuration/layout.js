@@ -96,11 +96,11 @@ function Configuration({ handleSubmit, onEdit, err, onLogout, user, success, loa
 }
 
 Configuration.propTypes = {
-  err: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   success: PropTypes.bool.isRequired,
   onEdit: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,
+  err: PropTypes.string,
   loading: PropTypes.bool,
   user: propTypes.user
 };

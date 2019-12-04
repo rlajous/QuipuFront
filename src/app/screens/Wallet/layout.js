@@ -5,6 +5,7 @@ import { t } from 'i18next';
 import StatisticsBox from '../../components/StatisticsBox';
 import Loader from '../../components/Loader';
 import { propTypes } from '../../../redux/Auth/reducer';
+import { propTypes as transactionsProptypes } from '../../../redux/Transactions/reducer';
 
 import Transactions from './Components/Transactions';
 import styles from './styles.module.scss';
@@ -61,7 +62,7 @@ Wallet.propTypes = {
   loading: PropTypes.bool,
   page: PropTypes.number,
   totalPages: PropTypes.number,
-  transactions: PropTypes.arrayOf,
+  transactions: transactionsProptypes.transactions,
   user: propTypes.user,
   onChangePage: PropTypes.func
 };

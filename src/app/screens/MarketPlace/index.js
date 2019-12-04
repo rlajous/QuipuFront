@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { actionCreators as modalActions } from '../../../redux/Modal/actions';
 import { actionCreators as marketPlaceActions } from '../../../redux/MarketPlace/actions';
 import Dashboard from '../../components/Dashboard';
+import { propTypes as orderProptypes } from '../../../redux/Order/reducer';
 
 import MarketPlace from './layout';
 
@@ -92,7 +93,7 @@ class MarketPlaceContainer extends Component {
 
 MarketPlaceContainer.propTypes = {
   amount: PropTypes.number,
-  buyers: PropTypes.arrayOf(),
+  buyers: orderProptypes.orders,
   filter: PropTypes.string,
   handleBuyModalChange: PropTypes.func,
   handleSellModalChange: PropTypes.func,
@@ -100,8 +101,7 @@ MarketPlaceContainer.propTypes = {
   hydrateSellers: PropTypes.func,
   loading: PropTypes.bool,
   page: PropTypes.number,
-  // eslint-disable-next-line
-  sellers: PropTypes.array,
+  sellers: orderProptypes.orders,
   totalPages: PropTypes.number,
   updatePage: PropTypes.func
 };

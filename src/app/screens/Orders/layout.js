@@ -13,6 +13,7 @@ import moment from 'moment';
 
 import { currencyFormat } from '../../../utils/parsers';
 import Loader from '../../components/Loader';
+import { propTypes as orderProptypes } from '../../../redux/Order/reducer';
 
 import styles from './styles.module.scss';
 
@@ -75,7 +76,7 @@ function Orders({
           {!loading && !!sells && (
             <TableBody>
               {sells.map(row => (
-                <TableRow className={styles.row} key={row.uid}>
+                <TableRow className={styles.row} key={row.id}>
                   <TableCell align="center" className={styles.cell}>
                     {row.tokens}
                   </TableCell>
@@ -94,7 +95,7 @@ function Orders({
           {!loading && !!purchases && (
             <TableBody>
               {purchases.map(row => (
-                <TableRow className={styles.row} key={row.name}>
+                <TableRow className={styles.row} key={row.id}>
                   <TableCell align="center" className={styles.cell}>
                     {row.tokens}
                   </TableCell>
@@ -150,8 +151,8 @@ Orders.propTypes = {
   handleOpenSellModal: PropTypes.func,
   loading: PropTypes.bool,
   page: PropTypes.number,
-  purchases: PropTypes.arrayOf(),
-  sells: PropTypes.arrayOf(),
+  purchases: orderProptypes.orders,
+  sells: orderProptypes.orders,
   totalPages: PropTypes.number,
   onChangePage: PropTypes.func,
   onHandlePurchases: PropTypes.func,

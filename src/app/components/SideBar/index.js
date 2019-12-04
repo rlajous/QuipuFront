@@ -28,9 +28,10 @@ function SideBar({ image, onDrawerClose, open, toggleDrawer }) {
             variant="persistent"
             anchor="left"
             open={open}
+            onOpen={toggleDrawer}
+            onClose={toggleDrawer}
             onClick={toggleDrawer()}
             onKeyDown={toggleDrawer()}
-            classes={`responsive ${styles.drawerPaper}`}
           >
             <div className={`${styles.drawerHeader}`}>
               <IconButton onClick={onDrawerClose}>
@@ -67,13 +68,7 @@ function SideBar({ image, onDrawerClose, open, toggleDrawer }) {
         </ClickAwayListener>
       </div>
       <div className="not-responsive">
-        <Drawer
-          className={styles.drawer}
-          variant="persistent"
-          anchor="left"
-          open
-          classes={`not-responsive ${styles.drawerPaper}`}
-        >
+        <Drawer className={styles.drawer} variant="persistent" anchor="left" open>
           <img src={image || defaultLogo} alt="Logo" className={`${styles.logo}`} />
           <Divider />
           <NavLink exact to={Routes.Wallet} className={styles.routeContainer} activeClassName={styles.bold}>

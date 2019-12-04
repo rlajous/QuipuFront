@@ -44,7 +44,7 @@ class ConfigurationContainer extends Component {
 
 ConfigurationContainer.propTypes = {
   edit: PropTypes.func,
-  err: PropTypes.func,
+  err: PropTypes.string,
   handleBuyModalChange: PropTypes.func,
   handleSellModalChange: PropTypes.func,
   loading: PropTypes.bool,

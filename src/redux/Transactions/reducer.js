@@ -46,9 +46,21 @@ export function reducer(state = Immutable(defaultState), action) {
 }
 /* eslint-enable complexity */
 
-/* ------------- Auth propTypes ------------- */
+/* ------------- Transactions propTypes ------------- */
+const date = PropTypes.shape({
+  _nanoseconds: PropTypes.number.isRequired,
+  _seconds: PropTypes.number.isRequired
+});
+
+const transaction = PropTypes.shape({
+  buyerId: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  sellerId: PropTypes.string.isRequired,
+  tokens: PropTypes.number.isRequired,
+  date
+});
+
 export const propTypes = {
-  loading: PropTypes.bool.isRequired,
-  initialLoading: PropTypes.bool.isRequired,
-  transactions: PropTypes.array
+  transactions: PropTypes.arrayOf(transaction)
 };

@@ -11,6 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import ReactPaginate from 'react-paginate';
 import moment from 'moment';
 
+import { propTypes as orderProptypes } from '../../../redux/Order/reducer';
 import { currencyFormat } from '../../../utils/parsers';
 import Loader from '../../components/Loader';
 
@@ -75,7 +76,7 @@ function MarketPlace({
           {!loading && !!sellers && (
             <TableBody>
               {sellers.map(row => (
-                <TableRow className={styles.row} key={row.uid}>
+                <TableRow className={styles.row} key={row.id}>
                   <TableCell align="center" className={styles.cell}>
                     {row.tokens}
                   </TableCell>
@@ -94,7 +95,7 @@ function MarketPlace({
           {!loading && !!buyers && (
             <TableBody>
               {buyers.map(row => (
-                <TableRow className={styles.row} key={row.name}>
+                <TableRow className={styles.row} key={row.id}>
                   <TableCell align="center" className={styles.cell}>
                     {row.tokens}
                   </TableCell>
@@ -146,12 +147,12 @@ function MarketPlace({
 }
 
 MarketPlace.propTypes = {
-  buyers: PropTypes.arrayOf(),
+  buyers: orderProptypes.orders,
   handleOpenBuyModal: PropTypes.func,
   handleOpenSellModal: PropTypes.func,
   loading: PropTypes.bool,
   page: PropTypes.number,
-  sellers: PropTypes.arrayOf(),
+  sellers: orderProptypes.orders,
   totalPages: PropTypes.number,
   onChangePage: PropTypes.func,
   onHandleBuyers: PropTypes.func,

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { actionCreators as modalActions } from '../../../redux/Modal/actions';
 import { actionCreators as ordersActions } from '../../../redux/Order/actions';
 import Dashboard from '../../components/Dashboard';
+import { propTypes as orderProptypes } from '../../../redux/Order/reducer';
 
 import Orders from './layout';
 
@@ -97,9 +98,8 @@ OrdersContainer.propTypes = {
   hydrateSells: PropTypes.func,
   loading: PropTypes.bool,
   page: PropTypes.number,
-  purchases: PropTypes.arrayOf(),
-  // eslint-disable-next-line
-  sells: PropTypes.array,
+  purchases: orderProptypes.orders,
+  sells: orderProptypes.orders,
   totalPages: PropTypes.number,
   updatePage: PropTypes.func
 };

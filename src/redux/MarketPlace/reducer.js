@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import Immutable from 'seamless-immutable';
 
 import { actions } from './actions';
@@ -62,15 +61,3 @@ export function reducer(state = Immutable(defaultState), action) {
     }
   }
 }
-/* eslint-enable complexity */
-
-/* ------------- Auth propTypes ------------- */
-export const propTypes = {
-  loading: PropTypes.bool.isRequired,
-  initialLoading: PropTypes.bool.isRequired,
-  currentUser: PropTypes.shape({
-    email: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired
-    // TODO: Extend user model definition
-  })
-};

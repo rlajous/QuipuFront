@@ -10,6 +10,7 @@ import { t } from 'i18next';
 import ReactPaginate from 'react-paginate';
 import moment from 'moment';
 
+import { propTypes as transactionsProptypes } from '../../../../../redux/Transactions/reducer';
 import { currencyFormat } from '../../../../../utils/parsers';
 import { propTypes } from '../../../../../redux/Auth/reducer';
 
@@ -39,7 +40,7 @@ function Orders({ loading, transactions, user, totalPages, onChangePage, page })
           {!!transactions && (
             <TableBody>
               {transactions.map(row => (
-                <TableRow className={styles.row} key={row.name}>
+                <TableRow className={styles.row} key={row.id}>
                   <TableCell component="th" scope="row" align="center" className={styles.cell}>
                     {row.sellerId === user.uid ? t('Orders:sells') : t('Orders:purchases')}
                   </TableCell>
@@ -92,7 +93,7 @@ Orders.propTypes = {
   loading: PropTypes.bool,
   page: PropTypes.number,
   totalPages: PropTypes.number,
-  transactions: PropTypes.arrayOf,
+  transactions: transactionsProptypes.transactions,
   user: propTypes.user,
   onChangePage: PropTypes.func
 };

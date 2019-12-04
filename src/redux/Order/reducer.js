@@ -1,4 +1,5 @@
 import Immutable from 'seamless-immutable';
+import PropTypes from 'prop-types';
 
 import { actions } from './actions';
 
@@ -89,3 +90,21 @@ export function reducer(state = Immutable(defaultState), action) {
     }
   }
 }
+
+/* ------------- Transactions propTypes ------------- */
+const date = PropTypes.shape({
+  _nanoseconds: PropTypes.number.isRequired,
+  _seconds: PropTypes.number.isRequired
+});
+
+const order = PropTypes.shape({
+  id: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  tokens: PropTypes.number.isRequired,
+  userId: PropTypes.string.isRequired,
+  date
+});
+
+export const propTypes = {
+  orders: PropTypes.arrayOf(order)
+};

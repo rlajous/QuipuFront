@@ -15,11 +15,15 @@ function InputLabel({
   inputType,
   disabled,
   value,
+  // eslint-disable-next-line
   meta,
+  // eslint-disable-next-line
   input,
+  // eslint-disable-next-line
   autoFocus
 }) {
-  const { touched, error, warning, active } = meta;
+  // eslint-disable-next-line
+  const { touched, error, active } = meta;
   return (
     <div className="column">
       <div className={`column start ${className} `}>
@@ -38,7 +42,9 @@ function InputLabel({
           autoFocus={autoFocus}
         />
       </div>
-      {meta.error && meta.touched && !meta.active && <div className={styles.error}>{meta.error}</div>}
+      {// eslint-disable-next-line
+        meta.error && meta.touched && !meta.active && <div className={styles.error}>{meta.error}</div>
+      }
     </div>
   );
 }
