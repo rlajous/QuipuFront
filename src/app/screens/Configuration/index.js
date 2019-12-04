@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { actionCreators as modalActions } from '../../../redux/Modal/actions';
 import { actionCreators as userActions } from '../../../redux/Auth/actions';
 import Dashboard from '../../components/Dashboard';
+import { propTypes } from '../../../redux/Auth/reducer';
 
 import Configuration from './layout';
 
@@ -49,7 +50,7 @@ ConfigurationContainer.propTypes = {
   loading: PropTypes.bool,
   logout: PropTypes.func,
   success: PropTypes.bool,
-  user: PropTypes.objectOf
+  user: propTypes.user
 };
 
 const mapStateToProps = store => ({

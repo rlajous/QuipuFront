@@ -3,7 +3,6 @@ import Immutable from 'seamless-immutable';
 
 import { actions } from './actions';
 
-/* ------------- Auth reducer ------------- */
 const defaultState = {
   transactions: [],
   loading: false,

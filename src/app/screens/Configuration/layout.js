@@ -6,6 +6,7 @@ import { Field, reduxForm, Form } from 'redux-form';
 import InputLabel from '../../components/InputLabel';
 import { required, email } from '../../../utils/inputValidations';
 import Loader from '../../components/Loader';
+import { propTypes } from '../../../redux/Auth/reducer';
 
 import { FIELDS } from './constants';
 import styles from './styles.module.scss';
@@ -101,7 +102,7 @@ Configuration.propTypes = {
   onEdit: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,
   loading: PropTypes.bool,
-  user: PropTypes.objectOf
+  user: propTypes.user
 };
 
 export default reduxForm({

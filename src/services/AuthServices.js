@@ -35,3 +35,5 @@ export const signUp = ({ email, password }) => api.put('/api/auth/signup', { ema
 export const edit = ({ email, password }) => api.post('/api/auth/editUser', { email, password });
 
 export const hydrateCurrentUser = () => api.get('/api/auth/user');
+
+export const singout = () => myFirebase.auth().signOut();

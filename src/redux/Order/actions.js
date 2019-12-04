@@ -7,8 +7,6 @@ export const actions = stringArrayToObject(
     'ORDER',
     'ORDER_SUCCESS',
     'ORDER_FAILURE',
-    'TOKENS',
-    'PRICE',
     'PAGE',
     'RESET_ORDER',
     'HYDRATE_SELLS',
@@ -64,18 +62,6 @@ export const actionCreators = {
     return {
       type: actions.PAGE,
       payload: page
-    };
-  },
-  handlePriceChange(price) {
-    return {
-      type: actions.PRICE,
-      payload: price
-    };
-  },
-  handleTokenChange(tokens) {
-    return {
-      type: actions.TOKENS,
-      payload: tokens
     };
   },
   buy(orderData) {

@@ -22,7 +22,6 @@ function InputLabel({
   autoFocus
 }) {
   const { touched, error, warning, active } = meta;
-  console.log({ touched, error, warning });
   return (
     <div className="column">
       <div className={`start ${className} `}>

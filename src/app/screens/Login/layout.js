@@ -54,7 +54,7 @@ function Login({ handleSubmit, onLogin, err }) {
         <button type="submit" className={`${styles.button}`}>
           {t('Login:enter')}
         </button>
-        <NavLink to={Routes.Register} activeClassName={styles.bold}>
+        <NavLink to={Routes.SignUp} activeClassName={styles.bold}>
           <span className={styles.button}>{t('SignUp:register')}</span>
         </NavLink>
       </div>
@@ -64,9 +64,9 @@ function Login({ handleSubmit, onLogin, err }) {
 }
 
 Login.propTypes = {
-  err: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  onLogin: PropTypes.func.isRequired
+  onLogin: PropTypes.func.isRequired,
+  err: PropTypes.string
 };
 
 export default reduxForm({

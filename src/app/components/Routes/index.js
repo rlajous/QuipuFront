@@ -10,7 +10,7 @@ import AuthenticatedRoute from './components/AuthenticatedRoute';
 import styles from './styles.scss';
 
 const Login = lazy(() => import('../../screens/Login'));
-const Register = lazy(() => import('../../screens/Register'));
+const SignUp = lazy(() => import('../../screens/SignUp'));
 const Orders = lazy(() => import('../../screens/Orders'));
 const MarketPlace = lazy(() => import('../../screens/MarketPlace'));
 const Wallet = lazy(() => import('../../screens/Wallet'));
@@ -23,7 +23,7 @@ function AppRoutes() {
         <Suspense>
           <Switch>
             <AuthenticatedRoute isPublicRoute exact path={Routes.Login} component={Login} />
-            <AuthenticatedRoute isPublicRoute exact path={Routes.Register} component={Register} />
+            <AuthenticatedRoute isPublicRoute exact path={Routes.SignUp} component={SignUp} />
             <AuthenticatedRoute isPrivateRoute exact path={Routes.Orders} component={Orders} />
             <AuthenticatedRoute isPrivateRoute exact path={Routes.MarketPlace} component={MarketPlace} />
             <AuthenticatedRoute isPrivateRoute exact path={Routes.Configuration} component={Configuration} />

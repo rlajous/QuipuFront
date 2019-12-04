@@ -21,9 +21,6 @@ export const actions = stringArrayToObject(
     'SIGN_UP_SUCCESS',
     'SIGN_UP_FAILURE',
     'AUTH_INIT',
-    'PASSWORD',
-    'CONFIRM_PASSWORD',
-    'EMAIL',
     'EDIT',
     'EDIT_SUCCESS',
     'EDIT_FAILURE'
@@ -97,24 +94,6 @@ export const actionCreators = {
     return {
       type: actions.AUTH_INIT,
       payload: { user }
-    };
-  },
-  handlePasswordChange(password) {
-    return {
-      type: actions.PASSWORD,
-      payload: password
-    };
-  },
-  handleConfirmPasswordChange(password) {
-    return {
-      type: actions.CONFIRM_PASSWORD,
-      payload: password
-    };
-  },
-  handleEmailChange(email) {
-    return {
-      type: actions.EMAIL,
-      payload: email
     };
   },
   login(authData) {
@@ -192,6 +171,7 @@ export const actionCreators = {
   logout() {
     return async dispatch => {
       await AuthService.removeCurrentUser();
+      await AuthService.singout();
       dispatch({ type: actions.LOGOUT });
       dispatch(push(Routes.Login));
     };

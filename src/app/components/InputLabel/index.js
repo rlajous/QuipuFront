@@ -13,16 +13,13 @@ function InputLabel({
   placeholder,
   inputId,
   inputType,
-  handleChange,
   disabled,
   value,
-  validate,
   meta,
   input,
   autoFocus
 }) {
   const { touched, error, warning, active } = meta;
-  console.log({ touched, error, warning });
   return (
     <div className="column">
       <div className={`column start ${className} `}>
@@ -36,10 +33,8 @@ function InputLabel({
           placeholder={placeholder}
           id={inputId}
           type={inputType}
-          onChange={handleChange}
           disabled={disabled}
           value={value}
-          validate={validate}
           autoFocus={autoFocus}
         />
       </div>
@@ -50,17 +45,15 @@ function InputLabel({
 
 InputLabel.propTypes = {
   dataFor: PropTypes.string.isRequired,
-  handleChange: PropTypes.func.isRequired,
   inputId: PropTypes.string.isRequired,
   inputType: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
   className: PropTypes.string,
   disabled: PropTypes.bool,
   inputClassName: PropTypes.string,
+  name: PropTypes.string,
   placeholder: PropTypes.string,
   textClassName: PropTypes.string,
-  validate: PropTypes.arrayOf,
   value: PropTypes.string
 };
 

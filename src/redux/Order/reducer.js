@@ -2,13 +2,12 @@ import Immutable from 'seamless-immutable';
 
 import { actions } from './actions';
 
-/* ------------- Auth reducer ------------- */
 const defaultState = {
   loading: false,
   tokens: 0,
   price: 0,
-  success: false,
-  err: false,
+  success: null,
+  err: null,
   purchases: [],
   sells: [],
   amount: 10,
@@ -26,35 +25,23 @@ export function reducer(state = Immutable(defaultState), action) {
         page: action.payload
       });
     }
-    case actions.PRICE: {
-      return state.merge({
-        price: action.payload
-      });
-    }
     case actions.RESET_ORDER: {
       return state.merge({
-        price: 0,
-        tokens: 0,
-        success: false,
-        err: false
-      });
-    }
-    case actions.TOKENS: {
-      return state.merge({
-        tokens: action.payload
+        success: null,
+        err: null
       });
     }
     case actions.ORDER: {
       return state.merge({
         loading: true,
-        success: false,
-        err: false
+        success: null,
+        err: null
       });
     }
     case actions.ORDER_SUCCESS: {
       return state.merge({
         loading: false,
-        success: true
+        success: null
       });
     }
     case actions.ORDER_FAILURE: {

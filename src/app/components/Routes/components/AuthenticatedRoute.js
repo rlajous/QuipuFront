@@ -9,37 +9,14 @@ import Routes from '../../../../constants/routes';
 const DEFAULT_PUBLIC_ROUTE = Routes.Login;
 const DEFAULT_PRIVATE_ROUTE = Routes.Wallet;
 
-function AuthenticatedRoute({
-  /*
-   * TODO Add this if you need it
-   * device,
-   */
-  isPublicRoute,
-  isPrivateRoute,
-  // initialized,
-  currentUser,
-  component: Comp,
-  ...props
-}) {
+function AuthenticatedRoute({ isPublicRoute, isPrivateRoute, currentUser, component: Comp, ...props }) {
   return (
     <Route
       {...props}
       // eslint-disable-next-line react/jsx-no-bind
       render={routeProps => {
-        /*
-         * TODO Add this if you need it
-         * if (device.isMobile && !device.adviceSubmitted) {
-         *   return <AppDownloader />;
-         * }
-         */
         if (currentUser) {
           if (isPublicRoute) {
-            /*
-             * TODO Add this if you need it
-             * if (currentUser && isPublicRoute) {
-             * do not allow logged users to access public routes. redirect to app
-             */
-
             return (
               <Redirect
                 to={{
@@ -49,7 +26,6 @@ function AuthenticatedRoute({
             );
           }
         } else if (isPrivateRoute) {
-          // Do not allow unlogged users to access app. redirect to signin
           return (
             <Redirect
               to={{
@@ -66,10 +42,6 @@ function AuthenticatedRoute({
 }
 
 AuthenticatedRoute.defaultProps = {
-  /*
-   * TODO Add this if you need it
-   * isPublicRoute: true,
-   */
   currentUser: false
 };
 
@@ -79,7 +51,9 @@ const mapStateToProps = state => ({
 
 AuthenticatedRoute.propTypes = {
   ...Route.propTypes, // eslint-disable-line react/forbid-foreign-prop-types
-  currentUser: PropTypes.objectOf(),
+  // eslint-disable-next-line
+  component: PropTypes.object,
+  currentUser: PropTypes.bool,
   isPrivateRoute: PropTypes.bool,
   isPublicRoute: PropTypes.bool
 };

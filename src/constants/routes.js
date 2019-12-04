@@ -5,7 +5,7 @@ const Routes = {
   Orders: '/Orders',
   MarketPlace: '/MarketPlace',
   Configuration: '/Configuration',
-  Register: '/register'
+  SignUp: '/signup'
 };
 
 export default Routes;

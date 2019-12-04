@@ -23,7 +23,7 @@ LoginContainer.propTypes = {
 };
 
 const mapStateToProps = store => ({
-  err: store.auth.err
+  err: store.auth.loginErr
 });
 
 const mapDispatchToProps = dispatch => ({

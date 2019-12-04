@@ -6,6 +6,7 @@ import NavBar from '../NavBar';
 import Loader from '../Loader';
 import SideBar from '../SideBar';
 import { actionCreators as userActions } from '../../../redux/Auth/actions';
+import { propTypes } from '../../../redux/Auth/reducer';
 
 import styles from './styles.module.scss';
 
@@ -64,10 +65,10 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
-  currentUser: PropTypes.objectOf(),
+  currentUser: PropTypes.bool,
   hydrateUser: PropTypes.func,
   loading: PropTypes.bool,
-  user: PropTypes.objectOf()
+  user: propTypes.user
 };
 
 const mapStateToProps = store => ({

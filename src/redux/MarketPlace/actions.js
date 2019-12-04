@@ -68,7 +68,6 @@ export const actionCreators = {
       try {
         const response = await MarketPlaceService.getBuyers(filter);
         if (response.ok) {
-          console.log(response.data);
           dispatch(privateActionCreators.hydrateBuyersSuccess(response.data));
         }
       } catch (e) {

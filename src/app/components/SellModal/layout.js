@@ -6,6 +6,7 @@ import { Field, reduxForm, Form } from 'redux-form';
 import CurrencyInput from '../CurrencyInput';
 import { required, minValue, stringMinValue } from '../../../utils/inputValidations';
 import InputLabel from '../InputLabel';
+import { propTypes } from '../../../redux/Auth/reducer';
 
 import { FIELDS, MIN_PRICE, MIN_TOKENS } from './constants';
 import styles from './styles.module.scss';
@@ -77,7 +78,7 @@ SellModal.propTypes = {
   sell: PropTypes.func.isRequired,
   success: PropTypes.bool.isRequired,
   onCloseModal: PropTypes.func.isRequired,
-  user: PropTypes.objectOf
+  user: propTypes.user
 };
 
 export default reduxForm({

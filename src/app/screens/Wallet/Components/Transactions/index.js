@@ -11,6 +11,7 @@ import ReactPaginate from 'react-paginate';
 import moment from 'moment';
 
 import { currencyFormat } from '../../../../../utils/parsers';
+import { propTypes } from '../../../../../redux/Auth/reducer';
 
 import styles from './styles.module.scss';
 
@@ -92,7 +93,7 @@ Orders.propTypes = {
   page: PropTypes.number,
   totalPages: PropTypes.number,
   transactions: PropTypes.arrayOf,
-  user: PropTypes.objectOf,
+  user: propTypes.user,
   onChangePage: PropTypes.func
 };
 

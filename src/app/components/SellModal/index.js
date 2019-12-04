@@ -7,6 +7,7 @@ import { SubmissionError } from 'redux-form';
 
 import { actionCreators as orderActions } from '../../../redux/Order/actions';
 import { actionCreators as modalActions } from '../../../redux/Modal/actions';
+import { propTypes } from '../../../redux/Auth/reducer';
 
 import SellModal from './layout';
 
@@ -70,7 +71,7 @@ SellModalContainer.propTypes = {
   sell: PropTypes.func,
   showSellModal: PropTypes.bool,
   success: PropTypes.string,
-  user: PropTypes.objectOf
+  user: propTypes.user
 };
 
 const mapStateToProps = store => ({

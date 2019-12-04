@@ -86,9 +86,9 @@ function SignUp({ handleSubmit, signUp, err }) {
 }
 
 SignUp.propTypes = {
-  err: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  signUp: PropTypes.func.isRequired
+  signUp: PropTypes.func.isRequired,
+  err: PropTypes.string
 };
 
 export default reduxForm({
