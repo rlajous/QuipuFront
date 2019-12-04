@@ -87,7 +87,4 @@ const mapDispatchToProps = dispatch => ({
   handleResetOrder: () => dispatch(orderActions.handleResetOrder())
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SellModalContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(SellModalContainer);

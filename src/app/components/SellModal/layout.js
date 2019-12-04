@@ -61,7 +61,7 @@ function SellModal({ error, handleSubmit, onCloseModal, sell, success, user }) {
           />
         </div>
         <div className="column center">
-          <button type="submit" className={`${styles.button} ${error || success ? styles.error : ''}`}>
+          <button type="submit" className={`${styles.button} ${error || success ? 'm-bottom-4' : ''}`}>
             {t('Marketplace:sell')}
           </button>
         </div>

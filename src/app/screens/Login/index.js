@@ -30,7 +30,4 @@ const mapDispatchToProps = dispatch => ({
   login: params => dispatch(userActions.login(params))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LoginContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

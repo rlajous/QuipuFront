@@ -84,7 +84,4 @@ const mapDispatchToProps = dispatch => ({
   updatePage: selectedPage => dispatch(transactionsActions.updatePage(selectedPage))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(WalletContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(WalletContainer);

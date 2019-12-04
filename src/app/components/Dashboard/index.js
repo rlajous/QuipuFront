@@ -81,7 +81,4 @@ const mapDispatchToProps = dispatch => ({
   hydrateUser: () => dispatch(userActions.hydrateUser())
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

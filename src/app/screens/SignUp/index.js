@@ -33,7 +33,4 @@ const mapDispatchToProps = dispatch => ({
   signUp: params => dispatch(userActions.signUp(params))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SignUpContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpContainer);

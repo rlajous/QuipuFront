@@ -121,7 +121,4 @@ const mapDispatchToProps = dispatch => ({
   handleBuyModalChange: params => dispatch(modalActions.handleBuyModalChange(params))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(OrdersContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(OrdersContainer);

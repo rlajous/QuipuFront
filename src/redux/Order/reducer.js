@@ -35,7 +35,7 @@ export function reducer(state = Immutable(defaultState), action) {
     case actions.ORDER: {
       return state.merge({
         loading: true,
-        success: null,
+        success: 'true',
         err: null
       });
     }

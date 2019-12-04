@@ -76,7 +76,4 @@ const mapDispatchToProps = dispatch => ({
   resetForm: () => dispatch(reset('BuyModal'))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(BuyModalContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(BuyModalContainer);

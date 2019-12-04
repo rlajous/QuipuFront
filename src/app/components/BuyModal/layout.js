@@ -52,7 +52,7 @@ function BuyModal({ handleSubmit, onCloseModal, buy, error, success }) {
           />
         </div>
         <div className="column center">
-          <button type="submit" className={`${styles.button} ${error || success ? styles.error : ''}`}>
+          <button type="submit" className={`${styles.button} ${error || success ? 'm-bottom-4' : ''}`}>
             {t('Marketplace:buy')}
           </button>
         </div>
