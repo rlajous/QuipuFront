@@ -70,7 +70,7 @@ SellModalContainer.propTypes = {
   handleSellModalChange: PropTypes.func,
   sell: PropTypes.func,
   showSellModal: PropTypes.bool,
-  success: PropTypes.string,
+  success: PropTypes.bool,
   user: propTypes.user
 };
 

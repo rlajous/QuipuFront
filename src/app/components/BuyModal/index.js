@@ -59,7 +59,7 @@ BuyModalContainer.propTypes = {
   handleResetOrder: PropTypes.func,
   resetForm: PropTypes.func,
   showBuyModal: PropTypes.bool,
-  success: PropTypes.string
+  success: PropTypes.bool
 };
 
 const mapStateToProps = store => ({
