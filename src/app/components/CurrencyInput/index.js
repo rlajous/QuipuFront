@@ -45,7 +45,7 @@ function InputLabel({
           onChange={handleChange}
           disabled={disabled}
           validate={validate}
-          autoFocus={autoFocus}
+          autoFocus={false}
           {...input}
         />
       </div>

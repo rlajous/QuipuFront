@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { t } from 'i18next';
 import { Field, reduxForm, Form } from 'redux-form';
 
-import CurrencyInput from '../CurrencyInput';
-import { required, minValue, stringMinValue } from '../../../utils/inputValidations';
+import { required, minValue } from '../../../utils/inputValidations';
 import InputLabel from '../InputLabel';
 import { propTypes } from '../../../redux/Auth/reducer';
 
@@ -13,10 +12,7 @@ import styles from './styles.module.scss';
 
 const tokenValidation = [required(t('SignUp:required')), minValue(t('Marketplace:minTokens'), MIN_TOKENS)];
 
-const priceValidation = [
-  required(t('SignUp:required')),
-  stringMinValue(t('Marketplace:minPrice'), MIN_PRICE)
-];
+const priceValidation = [required(t('SignUp:required')), minValue(t('Marketplace:minPrice'), MIN_PRICE)];
 
 function SellModal({ error, handleSubmit, onCloseModal, sell, success, user }) {
   return (
@@ -50,14 +46,17 @@ function SellModal({ error, handleSubmit, onCloseModal, sell, success, user }) {
           />
           <Field
             label={t('Marketplace:price')}
-            className={styles.container}
+            className={styles.inputContainer}
             name={FIELDS.price}
             inputId={FIELDS.price}
             dataFor={FIELDS.price}
-            component={CurrencyInput}
+            inputType="number"
+            component={InputLabel}
+            type="number"
             inputClassName={styles.input}
-            textClassName={styles.label}
+            textClassName={styles.inputText}
             validate={priceValidation}
+            placeholder={t('Marketplace:tokensPlaceholder')}
           />
         </div>
         <div className="column center">

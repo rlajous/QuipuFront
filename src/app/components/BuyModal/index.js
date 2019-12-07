@@ -34,7 +34,7 @@ class BuyModalContainer extends Component {
 
   onBuy = ({ tokens, price }) => {
     if (tokens && price) {
-      this.props.buy({ tokens, price: parseFloat(price.substring(1)) });
+      this.props.buy({ tokens, price });
     } else {
       throw new SubmissionError({
         _error: t('Marketplace:emptyValues')

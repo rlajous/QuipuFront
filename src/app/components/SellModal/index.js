@@ -40,7 +40,7 @@ class SellModalContainer extends Component {
       });
     }
     if (tokens && price) {
-      sell({ tokens, price: parseFloat(price.substring(1)) });
+      sell({ tokens, price });
     } else {
       throw new SubmissionError({
         _error: t('Marketplace:emptyValues')
