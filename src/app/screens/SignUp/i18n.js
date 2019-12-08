@@ -14,5 +14,6 @@ i18next.addResources('es', 'SignUp', {
   emailError: 'Ingrese un mail valido',
   confirmPassword: 'Confirmar Contraseña',
   confirmPasswordPlaceholder: 'Ingrese devuelta su contraseña',
-  missmatchPassword: 'Las contraseñas no coinciden'
+  missmatchPassword: 'Las contraseñas no coinciden',
+  minLength8: 'Ingrese como minimo 8 caracteres'
 });

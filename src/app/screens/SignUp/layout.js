@@ -4,7 +4,7 @@ import { t } from 'i18next';
 import { NavLink } from 'react-router-dom';
 import { Field, reduxForm, Form } from 'redux-form';
 
-import { required, email } from '../../../utils/inputValidations';
+import { required, email, minLength } from '../../../utils/inputValidations';
 import Routes from '../../../constants/routes';
 import InputLabel from '../../components/InputLabel';
 import logo from '../../assets/logo_with_name.png';
@@ -12,7 +12,12 @@ import logo from '../../assets/logo_with_name.png';
 import { FIELDS } from './constants';
 import styles from './styles.module.scss';
 
-const passwordValidation = [required(t('SignUp:required'))];
+const PASSWORD_MIN_LENGTH = 8;
+
+const passwordValidation = [
+  required(t('SignUp:required')),
+  minLength(PASSWORD_MIN_LENGTH, t('SignUp:minLength8'))
+];
 const emailValidation = [required(t('SignUp:required')), email(t('SignUp:emailError'))];
 
 const validate = values => {
