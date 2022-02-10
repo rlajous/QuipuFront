@@ -22,7 +22,7 @@
     "i18next": "^13.1.5",
     "mapbox-gl": "^1.2.0",
     "moment": "^2.24.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "postcss": "^7.0.17",
     "react": "^16.8.6",
     "react-chartjs-2": "^2.7.6",
